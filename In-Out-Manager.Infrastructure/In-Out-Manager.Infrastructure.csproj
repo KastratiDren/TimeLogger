@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\In-Out-Manager.Application\In-Out-Manager.Application.csproj" />
+    <ProjectReference Include="..\In-Out-Manager.Domain\In-Out-Manager.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
