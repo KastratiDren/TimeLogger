@@ -5,11 +5,14 @@ namespace In_Out_Manager.API
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddAppDI(this IServiceCollection service)
+        public static IServiceCollection AddAppDI(this IServiceCollection service, IConfiguration configuration)
         {
-            service.AddApplication().AddInfrastructure();
+            service.AddApplication().
+                AddInfrastructure(configuration);
             
             return service;
         }
     }
 }
+
+
