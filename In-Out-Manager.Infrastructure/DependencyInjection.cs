@@ -1,4 +1,6 @@
-﻿using In_Out_Manager.Infrastructure.Data;
+﻿using In_Out_Manager.Domain.Entites;
+using In_Out_Manager.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
