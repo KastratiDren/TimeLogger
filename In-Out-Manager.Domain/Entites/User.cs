@@ -11,6 +11,6 @@ namespace In_Out_Manager.Domain.Entites
         /// <summary>
         /// Stores the last name of the user.
         /// </summary>
-        public string Surename { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
     }
 }
