@@ -4,13 +4,10 @@ namespace In_Out_Manager.Domain.Entites
 {
     public class User : IdentityUser
     {
-        /// <summary>
-        /// Stores the first name of the user.
-        /// </summary>
         public string Name { get; set; } = string.Empty;
-        /// <summary>
-        /// Stores the last name of the user.
-        /// </summary>
         public string Surname { get; set; } = string.Empty;
+        public ICollection<CheckIn> CheckIns { get; set; }
+        public ICollection<CheckOut> CheckOuts { get; set; }
+        public ICollection<RoomBooking>? RoomBookings { get; set; }
     }
 }
