@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using In_Out_Manager.Application.Features.Authentication.Dtos;
+using In_Out_Manager.Application.IServices;
 using In_Out_Manager.Domain.Entites;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,12 @@ namespace In_Out_Manager.Application.Features.Authentication.Commands
     {
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        public RegisterUserHandler(UserManager<User> userManager, IMapper mapper)
+        private readonly ITokenService _tokenService;
+        public RegisterUserHandler(UserManager<User> userManager, IMapper mapper, ITokenService tokenService)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         public async Task<UserDto> Handle(RegisterUser request, CancellationToken cancellationToken)
@@ -36,8 +39,12 @@ namespace In_Out_Manager.Application.Features.Authentication.Commands
                     throw new Exception(string.Join("; ", roleResult.Errors.Select(e => e.Description)));
                 }
 
+                var token = _tokenService.CreateToken(user);
+
                 var userDto = _mapper.Map<UserDto>(user);
+                userDto.Token = token;
                 return userDto;
+
             }catch(Exception ex)
             {
                 throw new ApplicationException("An error occurred while registering the user.", ex);
