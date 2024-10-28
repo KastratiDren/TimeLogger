@@ -4,5 +4,9 @@
     {
         public int Id { get; set; }
         public DateTime CheckInTime { get; set; }
+
+        public int OfficeId { get; set; }
+        public Office Office { get; set; }
+
     }
 }
