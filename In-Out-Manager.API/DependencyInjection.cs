@@ -7,7 +7,7 @@ namespace In_Out_Manager.API
     {
         public static IServiceCollection AddAppDI(this IServiceCollection service, IConfiguration configuration)
         {
-            service.AddApplication().
+            service.AddApplication(configuration).
                 AddInfrastructure(configuration);
             
             return service;
