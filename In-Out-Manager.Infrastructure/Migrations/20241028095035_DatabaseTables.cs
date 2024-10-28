@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace In_Out_Manager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class DbTables : Migration
+    public partial class DatabaseTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rooms",
+                name: "Offices",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -63,7 +63,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.PrimaryKey("PK_Offices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,6 +179,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CheckInTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    OfficeId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -190,6 +191,12 @@ namespace In_Out_Manager.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CheckIns_Offices_OfficeId",
+                        column: x => x.OfficeId,
+                        principalTable: "Offices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,6 +206,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CheckOutTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    OfficeId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -210,10 +218,36 @@ namespace In_Out_Manager.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CheckOuts_Offices_OfficeId",
+                        column: x => x.OfficeId,
+                        principalTable: "Offices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomsBooking",
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    OfficeId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rooms_Offices_OfficeId",
+                        column: x => x.OfficeId,
+                        principalTable: "Offices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoomsBookings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -225,15 +259,15 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomsBooking", x => x.Id);
+                    table.PrimaryKey("PK_RoomsBookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoomsBooking_AspNetUsers_UserId",
+                        name: "FK_RoomsBookings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RoomsBooking_Rooms_RoomId",
+                        name: "FK_RoomsBookings_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
@@ -278,9 +312,19 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_CheckIns_OfficeId",
+                table: "CheckIns",
+                column: "OfficeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CheckIns_UserId",
                 table: "CheckIns",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CheckOuts_OfficeId",
+                table: "CheckOuts",
+                column: "OfficeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CheckOuts_UserId",
@@ -288,13 +332,18 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomsBooking_RoomId",
-                table: "RoomsBooking",
+                name: "IX_Rooms_OfficeId",
+                table: "Rooms",
+                column: "OfficeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomsBookings_RoomId",
+                table: "RoomsBookings",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomsBooking_UserId",
-                table: "RoomsBooking",
+                name: "IX_RoomsBookings_UserId",
+                table: "RoomsBookings",
                 column: "UserId");
         }
 
@@ -323,7 +372,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
                 name: "CheckOuts");
 
             migrationBuilder.DropTable(
-                name: "RoomsBooking");
+                name: "RoomsBookings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -333,6 +382,9 @@ namespace In_Out_Manager.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rooms");
+
+            migrationBuilder.DropTable(
+                name: "Offices");
         }
     }
 }

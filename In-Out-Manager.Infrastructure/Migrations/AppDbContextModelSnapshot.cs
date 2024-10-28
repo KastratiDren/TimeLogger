@@ -33,11 +33,16 @@ namespace In_Out_Manager.Infrastructure.Migrations
                     b.Property<DateTime>("CheckInTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("OfficeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OfficeId");
 
                     b.HasIndex("UserId");
 
@@ -55,15 +60,37 @@ namespace In_Out_Manager.Infrastructure.Migrations
                     b.Property<DateTime>("CheckOutTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("OfficeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OfficeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("CheckOuts");
+                });
+
+            modelBuilder.Entity("In_Out_Manager.Domain.Entites.Office", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Offices");
                 });
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.Room", b =>
@@ -78,7 +105,12 @@ namespace In_Out_Manager.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("OfficeId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OfficeId");
 
                     b.ToTable("Rooms");
                 });
@@ -110,7 +142,7 @@ namespace In_Out_Manager.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RoomsBooking");
+                    b.ToTable("RoomsBookings");
                 });
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.User", b =>
@@ -319,24 +351,51 @@ namespace In_Out_Manager.Infrastructure.Migrations
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.CheckIn", b =>
                 {
+                    b.HasOne("In_Out_Manager.Domain.Entites.Office", "Office")
+                        .WithMany("CheckIns")
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("In_Out_Manager.Domain.Entites.User", "User")
                         .WithMany("CheckIns")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Office");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.CheckOut", b =>
                 {
+                    b.HasOne("In_Out_Manager.Domain.Entites.Office", "Office")
+                        .WithMany("CheckOuts")
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("In_Out_Manager.Domain.Entites.User", "User")
                         .WithMany("CheckOuts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Office");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("In_Out_Manager.Domain.Entites.Room", b =>
+                {
+                    b.HasOne("In_Out_Manager.Domain.Entites.Office", "Office")
+                        .WithMany("Rooms")
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Office");
                 });
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.RoomBooking", b =>
@@ -407,6 +466,15 @@ namespace In_Out_Manager.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("In_Out_Manager.Domain.Entites.Office", b =>
+                {
+                    b.Navigation("CheckIns");
+
+                    b.Navigation("CheckOuts");
+
+                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("In_Out_Manager.Domain.Entites.Room", b =>
