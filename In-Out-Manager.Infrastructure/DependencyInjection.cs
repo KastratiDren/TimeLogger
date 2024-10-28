@@ -1,5 +1,7 @@
-﻿using In_Out_Manager.Domain.Entites;
+﻿using In_Out_Manager.Application.IServices;
+using In_Out_Manager.Domain.Entites;
 using In_Out_Manager.Infrastructure.Data;
+using In_Out_Manager.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +51,8 @@ namespace In_Out_Manager.Infrastructure
                         )
                 };
             });
+
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }
