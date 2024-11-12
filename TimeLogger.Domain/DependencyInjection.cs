@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 
-namespace In_Out_Manager.Domain
+namespace TimeLogger.Domain
 {
     public static class DependencyInjection
     {

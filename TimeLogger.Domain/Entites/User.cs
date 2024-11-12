@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace In_Out_Manager.Domain.Entites
+namespace TimeLogger.Domain.Entites
 {
     public class User : IdentityUser
     {

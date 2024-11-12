@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>In_Out_Manager.Application</RootNamespace>
+    <RootNamespace>TimeLogger.Application</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\In-Out-Manager.Domain\In-Out-Manager.Domain.csproj" />
+    <Folder Include="Features\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
+    <ProjectReference Include="..\TimeLogger.Domain\TimeLogger.Domain.csproj" />
   </ItemGroup>
 
 </Project>

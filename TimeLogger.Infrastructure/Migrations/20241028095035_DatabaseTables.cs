@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace In_Out_Manager.Infrastructure.Migrations
+namespace TimeLogger.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class DatabaseTables : Migration
