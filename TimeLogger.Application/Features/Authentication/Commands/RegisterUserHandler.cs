@@ -4,6 +4,7 @@ using TimeLogger.Application.IServices;
 using TimeLogger.Domain.Entites;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
 
 namespace TimeLogger.Application.Features.Authentication.Commands
 {
@@ -39,10 +40,12 @@ namespace TimeLogger.Application.Features.Authentication.Commands
                     throw new Exception(string.Join("; ", roleResult.Errors.Select(e => e.Description)));
                 }
 
+                var roles = await _userManager.GetRolesAsync(user);
                 var token = _tokenService.CreateToken(user);
 
                 var userDto = _mapper.Map<UserDto>(user);
                 userDto.Token = token;
+                userDto.Role = roles.FirstOrDefault();
                 return userDto;
 
             }catch(Exception ex)

@@ -29,5 +29,19 @@ namespace TimeLogger.API.Controllers
 
             return Ok(userDto);
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var command = new LoginUser(loginDto);
+            var userDto = await _mediator.Send(command);
+
+            return Ok(userDto);
+        }
     }
 }

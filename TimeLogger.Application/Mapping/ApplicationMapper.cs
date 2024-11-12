@@ -10,6 +10,7 @@ namespace TimeLogger.Application.Mapping
         {
             CreateMap<RegisterDto, User>().ReverseMap();
             CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<LoginDto, User>().ReverseMap();
         }
     }
 }
