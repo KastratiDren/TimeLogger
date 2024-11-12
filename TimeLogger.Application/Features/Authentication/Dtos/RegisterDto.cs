@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace In_Out_Manager.Application.Features.Authentication.Dtos
+namespace TimeLogger.Application.Features.Authentication.Dtos
 {
     public class RegisterDto
     {

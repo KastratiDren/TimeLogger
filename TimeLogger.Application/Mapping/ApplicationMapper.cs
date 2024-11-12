@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using In_Out_Manager.Application.Features.Authentication.Dtos;
-using In_Out_Manager.Domain.Entites;
+using TimeLogger.Application.Features.Authentication.Dtos;
+using TimeLogger.Domain.Entites;
 
-namespace In_Out_Manager.Application.Mapping
+namespace TimeLogger.Application.Mapping
 {
     public class ApplicationMapper : Profile
     {

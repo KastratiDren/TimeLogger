@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TimeLogger.Domain\TimeLogger.Domain.csproj" />
   </ItemGroup>
 

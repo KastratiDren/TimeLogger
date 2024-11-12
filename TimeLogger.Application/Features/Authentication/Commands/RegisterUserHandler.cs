@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using In_Out_Manager.Application.Features.Authentication.Dtos;
-using In_Out_Manager.Application.IServices;
-using In_Out_Manager.Domain.Entites;
+using TimeLogger.Application.Features.Authentication.Dtos;
+using TimeLogger.Application.IServices;
+using TimeLogger.Domain.Entites;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace In_Out_Manager.Application.Features.Authentication.Commands
+namespace TimeLogger.Application.Features.Authentication.Commands
 {
     public class RegisterUserHandler : IRequestHandler<RegisterUser, UserDto>
     {

@@ -1,12 +1,12 @@
-﻿using In_Out_Manager.Application.IServices;
-using In_Out_Manager.Domain.Entites;
+﻿using TimeLogger.Application.IServices;
+using TimeLogger.Domain.Entites;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace In_Out_Manager.Infrastructure.Services
+namespace TimeLogger.Infrastructure.Services
 {
     public class TokenService : ITokenService
     {

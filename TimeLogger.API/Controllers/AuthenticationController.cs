@@ -1,9 +1,9 @@
-﻿using In_Out_Manager.Application.Features.Authentication.Commands;
-using In_Out_Manager.Application.Features.Authentication.Dtos;
+﻿using TimeLogger.Application.Features.Authentication.Commands;
+using TimeLogger.Application.Features.Authentication.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace In_Out_Manager.API.Controllers
+namespace TimeLogger.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
