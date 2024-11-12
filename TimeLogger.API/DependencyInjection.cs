@@ -1,7 +1,7 @@
-﻿using In_Out_Manager.Application;
-using In_Out_Manager.Infrastructure;
+﻿using TimeLogger.Application;
+using TimeLogger.Infrastructure;
 
-namespace In_Out_Manager.API
+namespace TimeLogger.API
 {
     public static class DependencyInjection
     {

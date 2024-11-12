@@ -1,4 +1,4 @@
-using In_Out_Manager.API;
+using TimeLogger.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

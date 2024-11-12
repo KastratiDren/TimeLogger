@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In-Out-Manager.API", "In-Out-Manager.API\In-Out-Manager.API.csproj", "{C883FD37-BBEE-4089-9784-500556F5F13C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.API", "TimeLogger.API\TimeLogger.API.csproj", "{C883FD37-BBEE-4089-9784-500556F5F13C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In-Out-Manager.Application", "In-Out-Manager.Application\In-Out-Manager.Application.csproj", "{4127088B-4973-4C43-AD73-FC1B58159C23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.Application", "TimeLogger.Application\TimeLogger.Application.csproj", "{4127088B-4973-4C43-AD73-FC1B58159C23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In-Out-Manager.Domain", "In-Out-Manager.Domain\In-Out-Manager.Domain.csproj", "{A27D1E4F-435A-4514-AA1B-358C214B264B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.Domain", "TimeLogger.Domain\TimeLogger.Domain.csproj", "{A27D1E4F-435A-4514-AA1B-358C214B264B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In-Out-Manager.Infrastructure", "In-Out-Manager.Infrastructure\In-Out-Manager.Infrastructure.csproj", "{11CEA8F9-A213-4EA9-A580-37EB013E61FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.Infrastructure", "TimeLogger.Infrastructure\TimeLogger.Infrastructure.csproj", "{11CEA8F9-A213-4EA9-A580-37EB013E61FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
