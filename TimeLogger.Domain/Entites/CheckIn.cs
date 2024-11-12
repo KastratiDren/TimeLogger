@@ -1,4 +1,4 @@
-﻿namespace In_Out_Manager.Domain.Entites
+﻿namespace TimeLogger.Domain.Entites
 {
     public class CheckIn : Base
     {

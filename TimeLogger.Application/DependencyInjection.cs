@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace In_Out_Manager.Application
+namespace TimeLogger.Application
 {
     public static class DependencyInjection
     {

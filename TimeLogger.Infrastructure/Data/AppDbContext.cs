@@ -1,8 +1,8 @@
-﻿using In_Out_Manager.Domain.Entites;
+﻿using TimeLogger.Domain.Entites;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace In_Out_Manager.Infrastructure.Data
+namespace TimeLogger.Infrastructure.Data
 {
     public class AppDbContext : IdentityDbContext<User>
     {

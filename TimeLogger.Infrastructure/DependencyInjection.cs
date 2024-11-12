@@ -1,5 +1,5 @@
-﻿using In_Out_Manager.Domain.Entites;
-using In_Out_Manager.Infrastructure.Data;
+﻿using TimeLogger.Domain.Entites;
+using TimeLogger.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
 
-namespace In_Out_Manager.Infrastructure
+namespace TimeLogger.Infrastructure
 {
     public static class DependencyInjection
     {
