@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
+using TimeLogger.Application.IServices;
+using TimeLogger.Infrastructure.Services;
 
 namespace TimeLogger.Infrastructure
 {
@@ -24,6 +26,7 @@ namespace TimeLogger.Infrastructure
                 options.Password.RequireLowercase = true;
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<AppDbContext>();
 
             services.AddAuthentication(options =>
@@ -48,6 +51,8 @@ namespace TimeLogger.Infrastructure
                         )
                 };
             });
+
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }
