@@ -41,5 +41,15 @@ namespace TimeLogger.API.Controllers
             return Ok(officeDto);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllOffices()
+        {
+            var query = new GetAllOffices();
+
+            var officesDto = await _mediator.Send(query);
+
+            return Ok(officesDto);
+        }
+
     }
 }
