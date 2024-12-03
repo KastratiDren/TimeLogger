@@ -1,23 +1,26 @@
 ﻿using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
 using TimeLogger.Application.Features.Authentication.Dtos;
 using TimeLogger.Application.IServices;
 using TimeLogger.Domain.Entites;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using System.Data;
 
 namespace TimeLogger.Application.Features.Authentication.Commands
 {
     public class RegisterUserHandler : IRequestHandler<RegisterUser, UserDto>
     {
         private readonly UserManager<User> _userManager;
-        private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
-        public RegisterUserHandler(UserManager<User> userManager, IMapper mapper, ITokenService tokenService)
+        private readonly IMapper _mapper;
+
+        public RegisterUserHandler(
+            UserManager<User> userManager,
+            ITokenService tokenService,
+            IMapper mapper)
         {
             _userManager = userManager;
-            _mapper = mapper;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         public async Task<UserDto> Handle(RegisterUser request, CancellationToken cancellationToken)
@@ -40,15 +43,15 @@ namespace TimeLogger.Application.Features.Authentication.Commands
                     throw new Exception(string.Join("; ", roleResult.Errors.Select(e => e.Description)));
                 }
 
-                var roles = await _userManager.GetRolesAsync(user);
-                var token = _tokenService.CreateToken(user);
+                var token = await _tokenService.CreateToken(user);
 
                 var userDto = _mapper.Map<UserDto>(user);
                 userDto.Token = token;
-                userDto.Role = roles.FirstOrDefault();
-                return userDto;
+                userDto.Role = "Employee"; 
 
-            }catch(Exception ex)
+                return userDto;
+            }
+            catch (Exception ex)
             {
                 throw new ApplicationException("An error occurred while registering the user.", ex);
             }

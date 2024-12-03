@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimeLogger.Application.Features.Offices.Commands;
 using TimeLogger.Application.Features.Offices.Dtos;
@@ -18,6 +19,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost("CreateOffice")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateOffice([FromBody] OfficeDto officeDto)
         {
             if (!ModelState.IsValid)
