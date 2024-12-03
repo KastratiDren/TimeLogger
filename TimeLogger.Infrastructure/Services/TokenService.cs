@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace TimeLogger.Infrastructure.Services
 {
@@ -12,19 +13,25 @@ namespace TimeLogger.Infrastructure.Services
     {
         private readonly IConfiguration _configuration;
         private readonly SymmetricSecurityKey _key;
-        public TokenService(IConfiguration configuration)
+        private readonly UserManager<User> _userManager;
+
+        public TokenService(IConfiguration configuration, UserManager<User> userManager)
         {
             _configuration = configuration;
+            _userManager = userManager;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
         }
 
-        public string CreateToken(User user)
+        public async Task<string> CreateToken(User user)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.UserName)
             };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -38,7 +45,6 @@ namespace TimeLogger.Infrastructure.Services
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
