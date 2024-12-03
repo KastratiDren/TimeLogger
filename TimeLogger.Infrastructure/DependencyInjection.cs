@@ -6,9 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Configuration;
 using TimeLogger.Application.IServices;
 using TimeLogger.Infrastructure.Services;
+using TimeLogger.Application.IRepositories;
+using TimeLogger.Infrastructure.Repositories;
 
 namespace TimeLogger.Infrastructure
 {
@@ -53,6 +54,9 @@ namespace TimeLogger.Infrastructure
             });
 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOfficeRepository, OfficeRepository>();
+            services.AddScoped<ICheckInRepository, CheckInRepository>();
 
             return services;
         }
