@@ -25,7 +25,7 @@ namespace TimeLogger.Infrastructure.Repositories
             return true;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync(string email)
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await _context.Users
                 .Include(u => u.CheckIns)

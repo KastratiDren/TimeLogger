@@ -16,6 +16,19 @@ namespace TimeLogger.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var query = new GetAllUsers();
+            var usersDtos = await _mediator.Send(query);
+
+            if(usersDtos == null)
+                return NotFound();
+
+            return Ok(usersDtos);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(string id)
         {
