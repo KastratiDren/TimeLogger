@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimeLogger.Application.Features.Users.Commands;
 using TimeLogger.Application.Features.Users.Queries;
 
 namespace TimeLogger.API.Controllers
@@ -39,6 +40,18 @@ namespace TimeLogger.API.Controllers
                 return NotFound();
 
             return Ok(userDto); 
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var command = new DeleteUser(id);
+            var result = await _mediator.Send(command);
+
+            if(result == false)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }
