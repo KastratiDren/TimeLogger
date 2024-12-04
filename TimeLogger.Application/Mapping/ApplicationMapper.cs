@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TimeLogger.Application.Features.Authentication.Dtos;
 using TimeLogger.Application.Features.Offices.Dtos;
+using TimeLogger.Application.Features.Users.Dtos;
 using TimeLogger.Domain.Entites;
 
 namespace TimeLogger.Application.Mapping
@@ -16,6 +17,9 @@ namespace TimeLogger.Application.Mapping
 
             //office mappers
             CreateMap<OfficeDto, Office>().ReverseMap();
+
+            //user mappers
+            CreateMap<ProfileDto, User>().ReverseMap();
         }
     }
 }
