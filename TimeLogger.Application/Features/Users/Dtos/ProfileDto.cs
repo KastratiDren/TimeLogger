@@ -6,22 +6,22 @@
         public string Name { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public List<CheckInDto> CheckIns { get; set; } = new();
-        public List<CheckOutDto> CheckOuts { get; set; } = new();
-        public List<RoomBookingDto>? RoomBookings { get; set; }
+        public List<UserCheckInDto> CheckIns { get; set; } = new();
+        public List<UserCheckOutDto> CheckOuts { get; set; } = new();
+        public List<UserRoomBookingDto>? RoomBookings { get; set; }
     }
 
-    public class CheckInDto
+    public class UserCheckInDto
     {
         public DateTime CheckInTime { get; set; }
     }
 
-    public class CheckOutDto
+    public class UserCheckOutDto
     {
         public DateTime CheckOutTime { get; set; }
     }
 
-    public class RoomBookingDto
+    public class UserRoomBookingDto
     {
         public string RoomName { get; set; } = string.Empty;
         public DateTime BookingDate { get; set; }
