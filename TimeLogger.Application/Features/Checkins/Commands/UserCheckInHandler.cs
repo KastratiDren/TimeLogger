@@ -20,9 +20,10 @@ namespace TimeLogger.Application.Features.Checkins.Commands
         {
             var today = DateTime.Today;
             var userId = request.CheckInDto.UserId;
+            var officeId = request.CheckInDto.OfficeId;
 
             var existingCheckIn = await _checkInRepository.GetByUserIdAsync(userId);
-            if (existingCheckIn.Any(c => c.CheckInTime.Date == today))
+            if (existingCheckIn.Any(c => c.CheckInTime.Date == today && c.OfficeId == officeId))
                 return false;
 
             var checkIn = _mapper.Map<CheckIn>(request.CheckInDto);
