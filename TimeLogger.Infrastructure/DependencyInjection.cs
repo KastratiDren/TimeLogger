@@ -57,6 +57,7 @@ namespace TimeLogger.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOfficeRepository, OfficeRepository>();
             services.AddScoped<ICheckInRepository, CheckInRepository>();
+            services.AddScoped<ICheckOutRepository, CheckOutRepository>();
 
             return services;
         }
