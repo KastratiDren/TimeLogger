@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TimeLogger.Domain\TimeLogger.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Checkouts\Commands\" />
-  </ItemGroup>
-
 </Project>
