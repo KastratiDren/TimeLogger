@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TimeLogger.Application.Features.Checkouts.Commands;
 using TimeLogger.Application.Features.Checkouts.Dtos;
+using TimeLogger.Application.Features.Checkouts.Queries;
 
 namespace TimeLogger.API.Controllers
 {
@@ -26,6 +27,21 @@ namespace TimeLogger.API.Controllers
                 return BadRequest(result);
 
             return Ok(result);
+        }
+
+        [HttpGet("AverageCheckOutTime/{userId}")]
+        public async Task<IActionResult> GetUserAverageCheckOutTime(string userId)
+        {
+            var query = new GetUserAverageCheckOutTime(userId);
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+                return NotFound("No check-outs found for the user.");
+
+            // Format the TimeSpan to include only hours and minutes
+            var formattedResult = result.Value.ToString(@"hh\:mm");
+
+            return Ok(formattedResult);
         }
     }
 }
