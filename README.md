@@ -33,5 +33,11 @@ A basic app for managing employee check-ins and check-outs, featuring an admin d
 ![LogIn](https://github.com/user-attachments/assets/c891ecf4-ac42-4ce1-9d22-b16db68821c1)
 ![Registration](https://github.com/user-attachments/assets/0b72a3b0-6505-4bcb-88c9-28d86f91bbd0)
 
+## API Documentation
+
+For detailed API documentation, you can explore the available endpoints and their usage at the following link:
+
+[API Documentation]({host}/swagger)
+
 ---
 
