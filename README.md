@@ -39,7 +39,7 @@ A basic app for managing employee check-ins and check-outs, featuring an admin d
 ### Register Endpoint
 Registers a new user in the system by providing necessary information such as name, surname, username, email, and password.
 
-![Register Endpoint]()<img width="710" alt="RegisterEndpoint" src="https://github.com/user-attachments/assets/6999032b-3f75-4340-8655-eb380571c3ec" />
+<img width="710" alt="RegisterEndpoint" src="https://github.com/user-attachments/assets/6999032b-3f75-4340-8655-eb380571c3ec" />
 
 
 ---
@@ -47,7 +47,7 @@ Registers a new user in the system by providing necessary information such as na
 ### Login Endpoint
 Authenticates a user by validating their credentials (email and password).
 
-![Login Endpoint]()<img width="710" alt="LoginEndpoint" src="https://github.com/user-attachments/assets/fafb2088-7051-4a20-98d9-2d835ecb7129" />
+<img width="710" alt="LoginEndpoint" src="https://github.com/user-attachments/assets/fafb2088-7051-4a20-98d9-2d835ecb7129" />
 
 
 ---
@@ -55,7 +55,7 @@ Authenticates a user by validating their credentials (email and password).
 ### Check-In Endpoint
 Allows a user to check in to the system, indicating their activity or presence.
 
-![Check-In Endpoint]()<img width="710" alt="CheckinEndpoint" src="https://github.com/user-attachments/assets/1d638474-d3d3-44d9-bac7-76526b23dd24" />
+<img width="710" alt="CheckinEndpoint" src="https://github.com/user-attachments/assets/1d638474-d3d3-44d9-bac7-76526b23dd24" />
 
 
 ---
@@ -63,7 +63,7 @@ Allows a user to check in to the system, indicating their activity or presence.
 ### Delete User Endpoint
 Deletes an existing user from the system by their unique identifier.
 
-![Delete User Endpoint]()<img width="715" alt="DeletUserEndpoint" src="https://github.com/user-attachments/assets/30573f38-e25b-42fa-adf6-905dc623d4c1" />
+<img width="715" alt="DeletUserEndpoint" src="https://github.com/user-attachments/assets/30573f38-e25b-42fa-adf6-905dc623d4c1" />
 
 
 ---
@@ -71,7 +71,7 @@ Deletes an existing user from the system by their unique identifier.
 ### Get All Users Endpoint
 Retrieves a list of all users registered in the system.
 
-![Get All Users Endpoint]()<img width="712" alt="GetAllUserEndpoint" src="https://github.com/user-attachments/assets/62d8e05e-a589-4070-a1fa-456442af2e3d" />
+<img width="712" alt="GetAllUserEndpoint" src="https://github.com/user-attachments/assets/62d8e05e-a589-4070-a1fa-456442af2e3d" />
 
 
 ---
@@ -79,7 +79,7 @@ Retrieves a list of all users registered in the system.
 ### Get User by ID Endpoint
 Fetches details of a specific user based on their unique identifier.
 
-![Get User by ID Endpoint]()<img width="713" alt="GetUserByIdEndpoint" src="https://github.com/user-attachments/assets/704bbd48-d412-4dd1-aa16-1c1ff6e55825" />
+<img width="713" alt="GetUserByIdEndpoint" src="https://github.com/user-attachments/assets/704bbd48-d412-4dd1-aa16-1c1ff6e55825" />
 
 
 ---
@@ -89,7 +89,7 @@ Fetches details of a specific user based on their unique identifier.
 ### Create Office Endpoint
 Adds a new office to the system by providing details such as name and location.
 
-![Create Office Endpoint]()<img width="709" alt="CreateOfficeEndpoint" src="https://github.com/user-attachments/assets/1cd0b69c-993c-445b-a631-7175bc0dbd5b" />
+<img width="709" alt="CreateOfficeEndpoint" src="https://github.com/user-attachments/assets/1cd0b69c-993c-445b-a631-7175bc0dbd5b" />
 
 
 ---
@@ -97,7 +97,7 @@ Adds a new office to the system by providing details such as name and location.
 ### Get All Offices Endpoint
 Retrieves a list of all offices available in the system.
 
-![Get All Offices Endpoint]()<img width="712" alt="GetAllOfficesEndpoint" src="https://github.com/user-attachments/assets/6febd503-7e12-403e-9e37-6ddc9f0a1d2a" />
+<img width="712" alt="GetAllOfficesEndpoint" src="https://github.com/user-attachments/assets/6febd503-7e12-403e-9e37-6ddc9f0a1d2a" />
 
 
 ---
@@ -105,7 +105,7 @@ Retrieves a list of all offices available in the system.
 ### Get Office by ID Endpoint
 Fetches details of a specific office based on its unique identifier.
 
-![Get Office by ID Endpoint]()<img width="713" alt="GetOfficeByIdEndpoint" src="https://github.com/user-attachments/assets/a2b710a1-eec5-4b93-8fa6-0205727b22c0" />
+<img width="713" alt="GetOfficeByIdEndpoint" src="https://github.com/user-attachments/assets/a2b710a1-eec5-4b93-8fa6-0205727b22c0" />
 
 
 ---
