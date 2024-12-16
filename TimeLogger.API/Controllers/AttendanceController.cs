@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TimeLogger.Application.Features.Attendances.Queries;
+using TimeLogger.Application.Features.Attendances.Dto;
 using TimeLogger.Domain.Entites;
 
 namespace TimeLogger.API.Controllers
@@ -44,6 +45,24 @@ namespace TimeLogger.API.Controllers
             }
 
             return Ok(attendance);
+        }
+
+        // New Endpoint: Get daily work hours
+        [HttpGet("DailyWorkHours")]
+        public async Task<ActionResult<TimeSpan?>> GetDailyWorkHours([FromQuery] AttendanceDto attendanceDto)
+        {
+            var query = new GetDailyWorkHours(attendanceDto);
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(new { Message = "Unable to calculate work hours (missing CheckIn or CheckOut)." });
+            }
+
+            var formattedResult = result.Value.ToString(@"hh\:mm");
+
+            return Ok(formattedResult);
         }
     }
 }
