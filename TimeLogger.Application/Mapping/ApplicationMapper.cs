@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TimeLogger.Application.Features.Authentication.Dtos;
 using TimeLogger.Application.Features.Checkins.Dto;
+using TimeLogger.Application.Features.Checkouts.Dtos;
 using TimeLogger.Application.Features.Offices.Dtos;
 using TimeLogger.Application.Features.Users.Dtos;
 using TimeLogger.Domain.Entites;
@@ -24,6 +25,9 @@ namespace TimeLogger.Application.Mapping
 
             //checkin mappers
             CreateMap<CheckInDto, CheckIn>().ReverseMap();
+
+            //checkout mappers
+            CreateMap<CheckOutDto, CheckOut>().ReverseMap();
         }
     }
 }
