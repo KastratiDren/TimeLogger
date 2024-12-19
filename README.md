@@ -84,7 +84,6 @@ Fetches details of a specific user based on their unique identifier.
 
 ---
 
-## Office Management Endpoints
 
 ### Create Office Endpoint
 Adds a new office to the system by providing details such as name and location.
@@ -109,6 +108,13 @@ Fetches details of a specific office based on its unique identifier.
 
 
 ---
+
+### Check-out Endpoint
+Allows a user to check out of the system, indicating their activity is finished.
+
+<img width="718" alt="CheckoutEndpoint" src="https://github.com/user-attachments/assets/845c6d56-8c77-4211-9ca5-3531ad3b21bb" />
+
+
 
 
 
