@@ -115,6 +115,14 @@ Allows a user to check out of the system, indicating their activity is finished.
 <img width="718" alt="CheckoutEndpoint" src="https://github.com/user-attachments/assets/845c6d56-8c77-4211-9ca5-3531ad3b21bb" />
 
 
+---
+
+### Get User's Attendance by User Id Endpoint
+
+<img width="718" alt="GetUsersAttendanceById" src="https://github.com/user-attachments/assets/8668576b-d16d-4a3e-9b84-0689188d954a" />
+
+
+
 
 
 
