@@ -65,5 +65,14 @@ namespace TimeLogger.Infrastructure.Repositories
                 .OrderByDescending(c => c.CheckOutTime)
                 .ToListAsync();
         }
+
+        public async Task<CheckOut?> GetCheckoutByDateAndOfficeAsync(DateTime date, int officeId)
+        {
+            return await _context.CheckOuts
+                .Where(c => c.OfficeId == officeId && c.CheckOutTime.Date == date.Date)
+                .Include(c => c.Office)
+                .Include(c => c.User)
+                .FirstOrDefaultAsync();
+        }
     }
 }

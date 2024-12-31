@@ -10,5 +10,6 @@ namespace TimeLogger.Application.IRepositories
         Task<IEnumerable<CheckOut>> GetAllAsync();
         Task<IEnumerable<CheckOut>> GetByUserIdAsync(string userId);
         Task<IEnumerable<CheckOut>> GetByDateRangeAsync(DateTime startDate, DateTime endDate);
+        Task<CheckOut?> GetCheckoutByDateAndOfficeAsync(DateTime date, int officeId);
     }
 }
