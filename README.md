@@ -121,6 +121,41 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 <img width="718" alt="GetUsersAttendanceById" src="https://github.com/user-attachments/assets/8668576b-d16d-4a3e-9b84-0689188d954a" />
 
+### Get User's Average Checkin Time By User Id Endpoint
+
+<img width="713" alt="Get AverageCheckInTime" src="https://github.com/user-attachments/assets/cb377e42-d5c4-4b7f-96c4-d8b532dc4f25" />
+
+
+---
+
+### Get User's Average Checkin Time By User Id Endpoint
+
+<img width="713" alt="Get AverageCheckOutTime" src="https://github.com/user-attachments/assets/bbba3109-3526-45f5-bc9a-64608466899d" />
+
+
+---
+
+### Get User's Attendane for Specified Date Endpoint
+
+<img width="712" alt="Get AttendanceByDate" src="https://github.com/user-attachments/assets/7bac72a6-5511-494e-90b6-f235b811e24f" />
+
+
+---
+
+### Get Daily User's Total Work Duration for a Specified Date Endpoint
+
+<img width="717" alt="Get TotalWorkHours" src="https://github.com/user-attachments/assets/c0681535-e12c-449d-ac5e-a174f9d6e9fc" />
+
+
+---
+
+
+
+
+
+
+
+
 
 
 
