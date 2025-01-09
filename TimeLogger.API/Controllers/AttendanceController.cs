@@ -64,5 +64,22 @@ namespace TimeLogger.API.Controllers
 
             return Ok(formattedResult);
         }
+
+        [HttpGet("{userId}/WeeklyWorkHours")]
+        public async Task<ActionResult<TimeSpan>> GetWeeklyWorkHours(string userId)
+        {
+            var query = new GetWeeklyWorkHours(userId);
+
+            var result = await _mediator.Send(query);
+
+            if (result == TimeSpan.Zero)
+            {
+                return NotFound(new { Message = "No work hours found for the specified user this week." });
+            }
+
+            var formattedResult = result.ToString(@"hh\:mm");
+
+            return Ok(new { WeeklyWorkHours = formattedResult });
+        }
     }
 }
