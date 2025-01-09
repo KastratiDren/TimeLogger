@@ -157,6 +157,17 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 
 
+---
+
+### Get User's Weeky Total Work Duration
+
+<img width="710" alt="GetWeeklyWorkHours" src="https://github.com/user-attachments/assets/ad1fda93-2542-4b08-9d81-bc4bbd6e0ac0" />
+
+
+---
+
+
+
 
 
 

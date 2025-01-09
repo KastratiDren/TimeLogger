@@ -89,5 +89,37 @@ namespace TimeLogger.Infrastructure.Repositories
             return attendanceRecords;
         }
 
+        public async Task<TimeSpan> GetWeeklyWorkHoursAsync(string userId, DateTime startOfWeek, DateTime endOfWeek)
+        {
+            // Fetch all CheckIns and CheckOuts for the user within the date range
+            var checkIns = await _context.CheckIns
+                .Where(ci => ci.UserId == userId && ci.CheckInTime >= startOfWeek && ci.CheckInTime <= endOfWeek)
+                .ToListAsync();
+
+            var checkOuts = await _context.CheckOuts
+                .Where(co => co.UserId == userId && co.CheckOutTime >= startOfWeek && co.CheckOutTime <= endOfWeek)
+                .ToListAsync();
+
+            // Aggregate the total work duration
+            var totalWorkDuration = checkIns
+                .Select(ci =>
+                {
+                    var matchingCheckOut = checkOuts
+                        .Where(co => co.OfficeId == ci.OfficeId
+                                     && co.CheckOutTime.Date == ci.CheckInTime.Date
+                                     && co.CheckOutTime > ci.CheckInTime)
+                        .OrderBy(co => co.CheckOutTime)
+                        .FirstOrDefault();
+
+                    return matchingCheckOut != null
+                        ? (TimeSpan?)(matchingCheckOut.CheckOutTime - ci.CheckInTime)
+                        : null;
+                })
+                .Where(duration => duration.HasValue)
+                .Aggregate(TimeSpan.Zero, (sum, duration) => sum + duration.Value);
+
+            return totalWorkDuration;
+        }
+
     }
 }
