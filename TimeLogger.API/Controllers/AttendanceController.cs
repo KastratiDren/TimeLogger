@@ -81,5 +81,22 @@ namespace TimeLogger.API.Controllers
 
             return Ok(new { WeeklyWorkHours = formattedResult });
         }
+
+        [HttpGet("MonthlyWorkDuration/{userId}")]
+        public async Task<ActionResult<TimeSpan>> GetMonthlyWorkDuration(string userId)
+        {
+            var query = new GetMonthlyWorkDuration(userId);
+
+            var result = await _mediator.Send(query);
+
+            if (result == TimeSpan.Zero)
+            {
+                return NotFound(new { Message = "No work duration found for the specified user in the current month." });
+            }
+
+            var formattedResult = result.ToString(@"hh\:mm");
+            return Ok(new { TotalWorkDuration = formattedResult });
+        }
+
     }
 }

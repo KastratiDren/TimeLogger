@@ -121,5 +121,44 @@ namespace TimeLogger.Infrastructure.Repositories
             return totalWorkDuration;
         }
 
+        public async Task<TimeSpan> GetMonthlyWorkDurationAsync(string userId)
+        {
+            // Get the start and end of the current month
+            var currentDate = DateTime.Now;
+            var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+            // Fetch CheckIns and CheckOuts for the current month
+            var checkIns = await _context.CheckIns
+                .Where(ci => ci.UserId == userId && ci.CheckInTime.Date >= startOfMonth && ci.CheckInTime.Date <= endOfMonth)
+                .ToListAsync();
+
+            var checkOuts = await _context.CheckOuts
+                .Where(co => co.UserId == userId && co.CheckOutTime.Date >= startOfMonth && co.CheckOutTime.Date <= endOfMonth)
+                .ToListAsync();
+
+            // Calculate the total work duration
+            var totalWorkDuration = checkIns
+                .Select(ci =>
+                {
+                    var matchingCheckOut = checkOuts
+                        .Where(co => co.OfficeId == ci.OfficeId
+                                     && co.CheckOutTime.Date == ci.CheckInTime.Date
+                                     && co.CheckOutTime > ci.CheckInTime)
+                        .OrderBy(co => co.CheckOutTime)
+                        .FirstOrDefault();
+
+                    return matchingCheckOut != null
+                        ? (TimeSpan?)(matchingCheckOut.CheckOutTime - ci.CheckInTime)
+                        : null;
+                })
+                .Where(duration => duration.HasValue)
+                .Aggregate(TimeSpan.Zero, (sum, duration) => sum + duration.Value);
+
+            return totalWorkDuration;
+        }
+
+
+
     }
 }

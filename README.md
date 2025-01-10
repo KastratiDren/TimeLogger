@@ -149,17 +149,7 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 ---
 
-
-
-
-
-
-
-
-
----
-
-### Get User's Weeky Total Work Duration
+### Get User's Weekly Total Work Duration
 
 <img width="710" alt="GetWeeklyWorkHours" src="https://github.com/user-attachments/assets/ad1fda93-2542-4b08-9d81-bc4bbd6e0ac0" />
 
@@ -167,7 +157,12 @@ Allows a user to check out of the system, indicating their activity is finished.
 ---
 
 
+### Get User's Monthly Total Work Duration
 
+<img width="711" alt="GetMonthlyWorkHours" src="https://github.com/user-attachments/assets/05b261d3-240c-4288-8147-af8589b69c58" />
+
+
+---
 
 
 
