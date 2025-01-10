@@ -185,6 +185,26 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 ---
 
+### Get All Room Bookings
+
+<img width="711" alt="GetAllRoomBookings" src="https://github.com/user-attachments/assets/b2195265-c70d-4b73-aa45-efcbf7a703f9" />
+
+
+---
+
+### Get All Room Bookigs for a specified Room
+
+<img width="712" alt="GetRoomBookingsByRoom" src="https://github.com/user-attachments/assets/a7093b4f-4303-451b-b2f1-83b80cb5eda1" />
+
+---
+
+### Create a Room Booking
+
+<img width="715" alt="CreateRoomBooking" src="https://github.com/user-attachments/assets/7f11b3a6-9c76-4555-b5ec-bab15c9d2531" />
+
+---
+
+
 
 
 
