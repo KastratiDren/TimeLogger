@@ -47,5 +47,15 @@ namespace TimeLogger.API.Controllers
             return Ok(roomDetailsDto);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllRooms()
+        {
+            var query = new GetAllRooms();
+            var roomListDtos = await _mediator.Send(query);
+
+            return Ok(roomListDtos);
+        }
+
+
     }
 }
