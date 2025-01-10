@@ -60,6 +60,7 @@ namespace TimeLogger.Infrastructure
             services.AddScoped<ICheckOutRepository, CheckOutRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IRoomBookingRepository, RoomBookingRepository>();
 
             return services;
         }
