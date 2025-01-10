@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeLogger.Application.Features.Rooms.Commands;
 using TimeLogger.Application.Features.Rooms.Dtos;
+using TimeLogger.Application.Features.Rooms.Queries;
 
 namespace TimeLogger.API.Controllers
 {
@@ -29,5 +30,22 @@ namespace TimeLogger.API.Controllers
 
             return Ok(responseDto);
         }
+
+        [HttpGet("{id}")]
+        
+        public async Task<IActionResult> GetRoomById(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Invalid Room Id");
+
+            var query = new GetRoomById(id);
+            var roomDetailsDto = await _mediator.Send(query);
+
+            if (roomDetailsDto == null)
+                return NotFound($"Room with Id {id} was not found.");
+
+            return Ok(roomDetailsDto);
+        }
+
     }
 }
