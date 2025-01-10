@@ -164,7 +164,26 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 ---
 
+### Create Room
 
+<img width="710" alt="CreateRoom" src="https://github.com/user-attachments/assets/cc24cdc3-de68-4182-97d5-3f6b928e5209" />
+
+
+---
+
+### Get Room By Id
+
+<img width="712" alt="GetRoomById" src="https://github.com/user-attachments/assets/832f82f7-4f6b-4d56-8089-4adcfb010546" />
+
+
+---
+
+### Get All Rooms
+
+<img width="710" alt="GetAllRooms" src="https://github.com/user-attachments/assets/776caa73-8c09-46b7-9cd4-593a789dcdcd" />
+
+
+---
 
 
 
