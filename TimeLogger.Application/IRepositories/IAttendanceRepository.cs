@@ -4,8 +4,8 @@ namespace TimeLogger.Application.IRepositories
 {
     public interface IAttendanceRepository
     {
-        Task<List<Attendance>> GetAttendanceByUserIdAsync(string userId);
-        Task<List<Attendance>> GetAttendanceByDateAsync(DateTime date);
-        Task<TimeSpan> GetUserTotalWorkDuration(string userId, DateTime startDate, DateTime endDate);
+        Task<List<Attendance>> GetAttendancesByUserId(string userId);
+        Task<List<Attendance>> GetAttendancesByDate(DateTime date);
+        Task<TimeSpan> GetTotalWorkDurationByUserId(string userId, DateTime startDate, DateTime endDate);
     }
 }

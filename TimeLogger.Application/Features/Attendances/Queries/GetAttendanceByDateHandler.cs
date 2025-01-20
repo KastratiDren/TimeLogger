@@ -16,7 +16,7 @@ namespace TimeLogger.Application.Features.Attendances.Queries
         public async Task<List<Attendance>> Handle(GetAttendanceByDate request, CancellationToken cancellationToken)
         {
             var dateTime = request.date.ToDateTime(TimeOnly.MinValue);
-            return await _attendanceRepository.GetAttendanceByDateAsync(dateTime);
+            return await _attendanceRepository.GetAttendancesByDate(dateTime);
         }
     }
 }

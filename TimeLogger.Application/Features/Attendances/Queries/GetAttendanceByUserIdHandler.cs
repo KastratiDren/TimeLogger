@@ -15,7 +15,7 @@ namespace TimeLogger.Application.Features.Attendances.Queries
 
         public async Task<List<Attendance>> Handle(GetAttendanceByUserId request, CancellationToken cancellationToken)
         {
-            var attendance = await _attendanceRepository.GetAttendanceByUserIdAsync(request.userId);
+            var attendance = await _attendanceRepository.GetAttendancesByUserId(request.userId);
 
             return attendance;
         }
