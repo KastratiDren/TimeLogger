@@ -17,7 +17,7 @@ namespace TimeLogger.Application.Features.Attendances.Queries
             var today = DateTime.Today.AddDays(1);
             var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
 
-            return await _attendanceRepository.GetWeeklyWorkHoursAsync(request.UserId, startOfWeek, today);
+            return await _attendanceRepository.GetUserTotalWorkDuration(request.UserId, startOfWeek, today);
         }
     }
 }

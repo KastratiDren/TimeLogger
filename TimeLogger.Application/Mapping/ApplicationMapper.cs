@@ -44,6 +44,15 @@ namespace TimeLogger.Application.Mapping
             CreateMap<CheckOutDto, CheckOut>().ReverseMap();
             CreateMap<CheckOut, UserCheckOutDto>()
                 .ForMember(dest => dest.CheckOutTime, opt => opt.MapFrom(src => src.CheckOutTime));
+
+
+            // Map RoomBooking to UserRoomBookingDto
+            CreateMap<RoomBooking, UserRoomBookingDto>()
+                .ForMember(dest => dest.RoomName, opt => opt.MapFrom(src => src.Room.Name)) // Mapping the Room's Name
+                .ForMember(dest => dest.BookingDate, opt => opt.MapFrom(src => src.StartTime)) // Using StartTime as the booking date
+                .ReverseMap();
+
+
         }
     }
 }

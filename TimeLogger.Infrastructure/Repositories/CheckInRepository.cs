@@ -67,14 +67,5 @@ namespace TimeLogger.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<CheckIn?> GetCheckinByDateAndOfficeAsync(DateTime date, int officeId)
-        {
-            return await _context.CheckIns
-                .Where(c => c.OfficeId == officeId && c.CheckInTime.Date == date.Date)
-                .Include(c => c.Office)
-                .Include(c => c.User)
-                .FirstOrDefaultAsync();
-        }
-
     }
 }

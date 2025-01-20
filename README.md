@@ -173,9 +173,9 @@ Allows a user to check out of the system, indicating their activity is finished.
 
 ---
 
-### Get Daily User's Total Work Duration for a Specified Date Endpoint
+### Get User's Daily Total Work Duration
 
-<img width="717" alt="Get TotalWorkHours" src="https://github.com/user-attachments/assets/c0681535-e12c-449d-ac5e-a174f9d6e9fc" />
+<img width="707" alt="UserDailyWorkDuration" src="https://github.com/user-attachments/assets/e628e5b4-435d-4376-8ac4-6d940a92634b" />
 
 
 ---

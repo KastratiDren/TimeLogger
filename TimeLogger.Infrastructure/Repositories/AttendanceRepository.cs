@@ -89,28 +89,30 @@ namespace TimeLogger.Infrastructure.Repositories
             return attendanceRecords;
         }
 
-        public async Task<TimeSpan> GetWeeklyWorkHoursAsync(string userId, DateTime startOfWeek, DateTime endOfWeek)
+        public async Task<TimeSpan> GetUserTotalWorkDuration(string userId, DateTime startDate, DateTime endDate)
         {
-            // Fetch all CheckIns and CheckOuts for the user within the date range
-            var checkIns = await _context.CheckIns
-                .Where(ci => ci.UserId == userId && ci.CheckInTime >= startOfWeek && ci.CheckInTime <= endOfWeek)
+            // Retrieve all the check-ins within the specified date range
+            var userCheckIns = await _context.CheckIns
+                .Where(ci => ci.UserId == userId && ci.CheckInTime >= startDate && ci.CheckInTime <= endDate)
                 .ToListAsync();
 
-            var checkOuts = await _context.CheckOuts
-                .Where(co => co.UserId == userId && co.CheckOutTime >= startOfWeek && co.CheckOutTime <= endOfWeek)
+            // Retrieve all the check-outs within the specified date range
+            var userCheckOuts = await _context.CheckOuts
+                .Where(co => co.UserId == userId && co.CheckOutTime >= startDate && co.CheckOutTime <= endDate)
                 .ToListAsync();
 
-            // Aggregate the total work duration
-            var totalWorkDuration = checkIns
+            // Calculate total work duration by matching check-ins to check-outs
+            var userTotalWorkDuration = userCheckIns
                 .Select(ci =>
                 {
-                    var matchingCheckOut = checkOuts
+                    var matchingCheckOut = userCheckOuts
                         .Where(co => co.OfficeId == ci.OfficeId
-                                     && co.CheckOutTime.Date == ci.CheckInTime.Date
-                                     && co.CheckOutTime > ci.CheckInTime)
+                                    && co.CheckOutTime.Date == ci.CheckInTime.Date
+                                    && co.CheckOutTime > ci.CheckInTime)
                         .OrderBy(co => co.CheckOutTime)
                         .FirstOrDefault();
 
+                    // Calculate the duration for each check-in/check-out pair
                     return matchingCheckOut != null
                         ? (TimeSpan?)(matchingCheckOut.CheckOutTime - ci.CheckInTime)
                         : null;
@@ -118,47 +120,7 @@ namespace TimeLogger.Infrastructure.Repositories
                 .Where(duration => duration.HasValue)
                 .Aggregate(TimeSpan.Zero, (sum, duration) => sum + duration.Value);
 
-            return totalWorkDuration;
+            return userTotalWorkDuration;
         }
-
-        public async Task<TimeSpan> GetMonthlyWorkDurationAsync(string userId)
-        {
-            // Get the start and end of the current month
-            var currentDate = DateTime.Now;
-            var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
-            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
-
-            // Fetch CheckIns and CheckOuts for the current month
-            var checkIns = await _context.CheckIns
-                .Where(ci => ci.UserId == userId && ci.CheckInTime.Date >= startOfMonth && ci.CheckInTime.Date <= endOfMonth)
-                .ToListAsync();
-
-            var checkOuts = await _context.CheckOuts
-                .Where(co => co.UserId == userId && co.CheckOutTime.Date >= startOfMonth && co.CheckOutTime.Date <= endOfMonth)
-                .ToListAsync();
-
-            // Calculate the total work duration
-            var totalWorkDuration = checkIns
-                .Select(ci =>
-                {
-                    var matchingCheckOut = checkOuts
-                        .Where(co => co.OfficeId == ci.OfficeId
-                                     && co.CheckOutTime.Date == ci.CheckInTime.Date
-                                     && co.CheckOutTime > ci.CheckInTime)
-                        .OrderBy(co => co.CheckOutTime)
-                        .FirstOrDefault();
-
-                    return matchingCheckOut != null
-                        ? (TimeSpan?)(matchingCheckOut.CheckOutTime - ci.CheckInTime)
-                        : null;
-                })
-                .Where(duration => duration.HasValue)
-                .Aggregate(TimeSpan.Zero, (sum, duration) => sum + duration.Value);
-
-            return totalWorkDuration;
-        }
-
-
-
     }
 }
