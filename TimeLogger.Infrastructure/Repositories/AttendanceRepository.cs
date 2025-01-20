@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
-using TimeLogger.Infrastructure.Data;
-
-namespace TimeLogger.Infrastructure.Repositories
+﻿namespace TimeLogger.Infrastructure.Repositories
 {
     public class AttendanceRepository : IAttendanceRepository
     {

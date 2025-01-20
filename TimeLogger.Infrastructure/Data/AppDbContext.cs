@@ -1,6 +1,4 @@
-﻿using TimeLogger.Domain.Entites;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 namespace TimeLogger.Infrastructure.Data
