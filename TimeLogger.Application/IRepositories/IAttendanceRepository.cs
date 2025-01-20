@@ -6,9 +6,6 @@ namespace TimeLogger.Application.IRepositories
     {
         Task<List<Attendance>> GetAttendanceByUserIdAsync(string userId);
         Task<List<Attendance>> GetAttendanceByDateAsync(DateTime date);
-        Task<TimeSpan> GetWeeklyWorkHoursAsync(string userId, DateTime startOfWeek, DateTime endOfWeek);
-        Task<TimeSpan> GetMonthlyWorkDurationAsync(string userId);
-
-
+        Task<TimeSpan> GetUserTotalWorkDuration(string userId, DateTime startDate, DateTime endDate);
     }
 }

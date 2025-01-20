@@ -16,7 +16,11 @@ namespace TimeLogger.Application.Features.Attendances.Queries
 
         public async Task<TimeSpan> Handle(GetMonthlyWorkDuration request, CancellationToken cancellationToken)
         {
-            var totalWorkDuration = await _attendanceRepository.GetMonthlyWorkDurationAsync(request.UserId);
+            var currentDate = DateTime.Now;
+            var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+            var totalWorkDuration = await _attendanceRepository.GetUserTotalWorkDuration(request.UserId, startOfMonth, endOfMonth);
 
             return totalWorkDuration;
         }

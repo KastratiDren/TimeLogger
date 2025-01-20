@@ -49,9 +49,9 @@ namespace TimeLogger.API.Controllers
 
         // New Endpoint: Get daily work hours
         [HttpGet("DailyWorkHours")]
-        public async Task<ActionResult<TimeSpan?>> GetDailyWorkHours([FromQuery] AttendanceDto attendanceDto)
+        public async Task<ActionResult<TimeSpan?>> GetDailyWorkHours(string userId)
         {
-            var query = new GetDailyWorkHours(attendanceDto);
+            var query = new GetDailyWorkHours(userId);
 
             var result = await _mediator.Send(query);
 
