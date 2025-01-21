@@ -18,7 +18,7 @@ namespace TimeLogger.Application.Features.Offices.Queries
 
         public async Task<List<OfficeDto>> Handle(GetAllOffices request, CancellationToken cancellationToken)
         {
-            var offices = await _officeRepository.GetAllAsync();
+            var offices = await _officeRepository.GetAllOffices();
 
             var officeDtos = _mapper.Map<List<OfficeDto>>(offices);
 
