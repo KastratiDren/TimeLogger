@@ -8,13 +8,13 @@
             _context = context;
         }
 
-        public async Task AddAsync(CheckOut checkOut)
+        public async Task CreateCheckOut(CheckOut checkOut)
         {
             await _context.CheckOuts.AddAsync(checkOut);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteCheckOut(int id)
         {
             var checkOut = await _context.CheckOuts.FindAsync(id);
             if (checkOut == null)
@@ -26,23 +26,27 @@
             return true;
         }
 
-        public async Task<CheckOut?> GetByIdAsync(int id)
+        public async Task<CheckOut?> GetCheckOutById(int id)
         {
-            return await _context.CheckOuts
+            var checkOut = await _context.CheckOuts
                 .Include(c => c.Office)
                 .Include(c => c.User)
                 .FirstOrDefaultAsync(c => c.Id == id);
+
+            return checkOut;
         }
 
-        public async Task<IEnumerable<CheckOut>> GetAllAsync()
+        public async Task<IEnumerable<CheckOut>> GetAllCheckOuts()
         {
-            return await _context.CheckOuts
+            var checkOuts = await _context.CheckOuts
                 .Include(c => c.Office)
                 .Include(c => c.User)
                 .ToListAsync();
+
+            return checkOuts;
         }
 
-        public async Task<IEnumerable<CheckOut>> GetByUserIdAsync(string userId)
+        public async Task<IEnumerable<CheckOut>> GetCheckOutsByUserId(string userId)
         {
             return await _context.CheckOuts
                 .Where(c => c.UserId == userId)
@@ -51,14 +55,16 @@
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<CheckOut>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<CheckOut>> GetCheckOutsByDateRange(DateTime startDate, DateTime endDate)
         {
-            return await _context.CheckOuts
+            var checkOuts = await _context.CheckOuts
                 .Where(c => c.CheckOutTime >= startDate && c.CheckOutTime <= endDate)
                 .Include(c => c.Office)
                 .Include(c => c.User)
                 .OrderByDescending(c => c.CheckOutTime)
                 .ToListAsync();
+
+            return checkOuts;
         }
     }
 }

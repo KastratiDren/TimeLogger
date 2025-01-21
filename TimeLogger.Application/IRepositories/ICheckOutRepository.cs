@@ -4,12 +4,11 @@ namespace TimeLogger.Application.IRepositories
 {
     public interface ICheckOutRepository
     {
-        Task AddAsync(CheckOut checkOut);
-        Task<bool> DeleteAsync(int id);
-        Task<CheckOut?> GetByIdAsync(int id);
-        Task<IEnumerable<CheckOut>> GetAllAsync();
-        Task<IEnumerable<CheckOut>> GetByUserIdAsync(string userId);
-        Task<IEnumerable<CheckOut>> GetByDateRangeAsync(DateTime startDate, DateTime endDate);
-
+        Task<CheckOut?> GetCheckOutById(int id);
+        Task<IEnumerable<CheckOut>> GetAllCheckOuts();
+        Task<IEnumerable<CheckOut>> GetCheckOutsByUserId(string userId);
+        Task<IEnumerable<CheckOut>> GetCheckOutsByDateRange(DateTime startDate, DateTime endDate);
+        Task CreateCheckOut(CheckOut checkOut);
+        Task<bool> DeleteCheckOut(int id);
     }
 }
