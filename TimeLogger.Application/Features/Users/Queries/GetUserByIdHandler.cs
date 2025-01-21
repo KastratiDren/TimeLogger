@@ -18,7 +18,7 @@ namespace TimeLogger.Application.Features.Users.Queries
 
         public async Task<ProfileDto> Handle(GetUserById request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByIdAsync(request.UserId);
+            var user = await _userRepository.GetUserById(request.UserId);
             if (user == null)
             {
                 throw new KeyNotFoundException($"User with ID {request.UserId} not found.");

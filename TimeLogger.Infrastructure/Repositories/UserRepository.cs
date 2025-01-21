@@ -9,7 +9,7 @@
             _context = context;
         }
 
-        public async Task<bool> DeleteAsync(string userId)
+        public async Task<bool> DeleteUser(string userId)
         {
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
@@ -20,25 +20,29 @@
             return true;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
-            return await _context.Users
+            var users = await _context.Users
                 .Include(u => u.CheckIns)
                 .Include(u => u.CheckOuts)
                 .Include(u => u.RoomBookings)
                 .ToListAsync();
+
+            return users;
         }
 
-        public async Task<User?> GetByIdAsync(string userId)
+        public async Task<User?> GetUserById(string userId)
         {
-            return await _context.Users
+            var user = await _context.Users
                 .Include(u => u.CheckIns)
                 .Include(u => u.CheckOuts)
                 .Include(u => u.RoomBookings)
                 .FirstOrDefaultAsync(u => u.Id == userId);
+
+            return user;
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateUser(User user)
         {
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
