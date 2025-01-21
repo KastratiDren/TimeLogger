@@ -27,7 +27,7 @@ namespace TimeLogger.Application.Features.Checkouts.Commands
             var userId = request.CheckOutDto.UserId;
             var officeId = request.CheckOutDto.OfficeId;
 
-            var todayCheckInForOffice = (await _checkInRepository.GetByUserIdAsync(userId))
+            var todayCheckInForOffice = (await _checkInRepository.GetCheckInsByUserId(userId))
                 .FirstOrDefault(c => c.CheckInTime.Date == today && c.OfficeId == officeId);
 
             if (todayCheckInForOffice == null)

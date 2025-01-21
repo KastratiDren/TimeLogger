@@ -9,13 +9,57 @@
             _context = context;
         }
 
-        public async Task AddAsync(CheckIn checkIn)
+        public async Task<IEnumerable<CheckIn>> GetAllCheckIns()
+        {
+            var checkIns = await _context.CheckIns
+                .Include(c => c.Office)
+                .Include(c => c.User)
+                .ToListAsync();
+
+            return checkIns;
+        }
+
+        public async Task<CheckIn?> GetCheckInById(int id)
+        {
+
+            var checkIn = await _context.CheckIns
+                .Include(c => c.Office)
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return checkIn;
+        }
+
+        public async Task<IEnumerable<CheckIn>> GetCheckInsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var checkIns = await _context.CheckIns
+                .Where(c => c.CheckInTime >= startDate && c.CheckInTime <= endDate)
+                .Include(c => c.Office)
+                .Include(c => c.User)
+                .OrderByDescending(c => c.CheckInTime)
+                .ToListAsync();
+
+            return checkIns;
+        }
+
+        public async Task<IEnumerable<CheckIn>> GetCheckInsByUserId(string userId)
+        {
+            var checkIns = await _context.CheckIns
+                .Where(c => c.UserId == userId)
+                .Include(c => c.Office)
+                .OrderByDescending(c => c.CheckInTime)
+                .ToListAsync();
+
+            return checkIns;
+        }
+
+        public async Task CreateCheckIn(CheckIn checkIn)
         {
             await _context.CheckIns.AddAsync(checkIn);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteCheckIn(int id)
         {
             var checkIn = await _context.CheckIns.FindAsync(id);
             if (checkIn == null)
@@ -26,41 +70,5 @@
 
             return true;
         }
-
-        public async Task<IEnumerable<CheckIn>> GetAllAsync()
-        {
-            return await _context.CheckIns
-                .Include(c => c.Office)
-                .Include(c => c.User)
-                .ToListAsync();
-        }
-
-        public async Task<CheckIn?> GetByIdAsync(int id)
-        {
-            return await _context.CheckIns
-                .Include(c => c.Office)
-                .Include(c => c.User)
-                .FirstOrDefaultAsync(c => c.Id == id);
-        }
-
-        public async Task<IEnumerable<CheckIn>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
-        {
-            return await _context.CheckIns
-                .Where(c => c.CheckInTime >= startDate && c.CheckInTime <= endDate)
-                .Include(c => c.Office)
-                .Include(c => c.User)
-                .OrderByDescending(c => c.CheckInTime)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<CheckIn>> GetByUserIdAsync(string userId)
-        {
-            return await _context.CheckIns
-                .Where(c => c.UserId == userId)
-                .Include(c => c.Office)
-                .OrderByDescending(c => c.CheckInTime)
-                .ToListAsync();
-        }
-
     }
 }

@@ -4,11 +4,11 @@ namespace TimeLogger.Application.IRepositories
 {
     public interface ICheckInRepository
     {
-        Task AddAsync(CheckIn checkIn);
-        Task<bool> DeleteAsync(int id);
-        Task<CheckIn?> GetByIdAsync(int id);
-        Task<IEnumerable<CheckIn>> GetAllAsync();
-        Task<IEnumerable<CheckIn>> GetByUserIdAsync(string userId);
-        Task<IEnumerable<CheckIn>> GetByDateRangeAsync(DateTime startDate, DateTime endDate);
+        Task<CheckIn?> GetCheckInById(int id);
+        Task<IEnumerable<CheckIn>> GetAllCheckIns();
+        Task<IEnumerable<CheckIn>> GetCheckInsByUserId(string userId);
+        Task<IEnumerable<CheckIn>> GetCheckInsByDateRange(DateTime startDate, DateTime endDate);
+        Task CreateCheckIn(CheckIn checkIn);
+        Task<bool> DeleteCheckIn(int id);
     }
 }
