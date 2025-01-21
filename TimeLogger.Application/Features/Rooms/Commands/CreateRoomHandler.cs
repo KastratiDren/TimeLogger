@@ -23,7 +23,7 @@ namespace TimeLogger.Application.Features.Rooms.Commands
             var room = _mapper.Map<Room>(request.RoomDto);
 
             // Add to repository
-            await _roomRepository.AddAsync(room);
+            await _roomRepository.CreateRoom(room);
 
             // Map Entity back to DTO
             var responseDto = _mapper.Map<RoomDto>(room);

@@ -9,13 +9,33 @@
             _context = context;
         }
 
-        public async Task AddAsync(Room room)
+        public async Task<IEnumerable<Room>> GetAllRooms()
+        {
+            var rooms = await _context.Rooms
+                .Include(r => r.Office)
+                .Include(r => r.RoomBookings)
+                .ToListAsync();
+
+            return rooms;
+        }
+
+        public async Task<Room?> GetRoomById(int id)
+        {
+            var room = await _context.Rooms
+                .Include(r => r.Office)
+                .Include(r => r.RoomBookings)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            return room;
+        }
+
+        public async Task CreateRoom(Room room)
         {
             await _context.Rooms.AddAsync(room);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteRoom(int id)
         {
             var room = await _context.Rooms.FindAsync(id);
             if (room == null)
@@ -26,31 +46,15 @@
             return true;
         }
 
-        public async Task<IEnumerable<Room>> GetAllAsync()
-        {
-            return await _context.Rooms
-                .Include(r => r.Office)
-                .Include(r => r.RoomBookings)
-                .ToListAsync();
-        }
-
-        public async Task<Room?> GetByIdAsync(int id)
-        {
-            return await _context.Rooms
-                .Include(r => r.Office)
-                .Include(r => r.RoomBookings)
-                .FirstOrDefaultAsync(r => r.Id == id);
-        }
-
-        public async Task<bool> IsValidRoomAsync(int roomId)
-        {
-            return await _context.Rooms.AnyAsync(r => r.Id == roomId);
-        }
-
-        public async Task UpdateAsync(Room room)
+        public async Task UpdateRoom(Room room)
         {
             _context.Rooms.Update(room);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsRoomValid(int roomId)
+        {
+            return await _context.Rooms.AnyAsync(r => r.Id == roomId);
         }
     }
 }

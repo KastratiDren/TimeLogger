@@ -25,7 +25,7 @@ namespace TimeLogger.Application.Features.RoomBookings.Handlers
             var dto = request.RoomBookingsDto;
 
             // Validate Room Existence
-            var roomExists = await _roomRepository.IsValidRoomAsync(dto.RoomId);
+            var roomExists = await _roomRepository.IsRoomValid(dto.RoomId);
             if (!roomExists)
                 throw new ArgumentException($"Room with ID {dto.RoomId} does not exist.");
 
