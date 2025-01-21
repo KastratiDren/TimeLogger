@@ -4,6 +4,6 @@ namespace TimeLogger.Application.IServices
 {
     public interface ITokenService
     {
-        Task<string> CreateToken(User user);
+        Task<string> GenerateJwtToken(User user);
     }
 }

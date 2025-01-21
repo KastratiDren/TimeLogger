@@ -43,7 +43,7 @@ namespace TimeLogger.Application.Features.Authentication.Commands
                     throw new Exception(string.Join("; ", roleResult.Errors.Select(e => e.Description)));
                 }
 
-                var token = await _tokenService.CreateToken(user);
+                var token = await _tokenService.GenerateJwtToken(user);
 
                 var userDto = _mapper.Map<UserDto>(user);
                 userDto.Token = token;
