@@ -30,7 +30,7 @@ namespace TimeLogger.Application.Features.RoomBookings.Handlers
                 throw new ArgumentException($"Room with ID {dto.RoomId} does not exist.");
 
             // Validate Overlapping Bookings
-            var existingBookings = await _roomBookingRepository.GetByRoomIdAsync(dto.RoomId);
+            var existingBookings = await _roomBookingRepository.GetRoomBookingByRoomId(dto.RoomId);
             var hasConflict = existingBookings.Any(b =>
                 (dto.StartTime >= b.StartTime && dto.StartTime < b.EndTime) ||
                 (dto.EndTime > b.StartTime && dto.EndTime <= b.EndTime) ||
@@ -43,7 +43,7 @@ namespace TimeLogger.Application.Features.RoomBookings.Handlers
             // Create the RoomBooking
             var roomBooking = _mapper.Map<RoomBooking>(dto);
 
-            await _roomBookingRepository.AddAsync(roomBooking);
+            await _roomBookingRepository.CreateRoomBooking(roomBooking);
             return true;
         }
     }

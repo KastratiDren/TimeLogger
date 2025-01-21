@@ -4,12 +4,12 @@ namespace TimeLogger.Application.IRepositories
 {
     public interface IRoomBookingRepository
     {
-        Task AddAsync(RoomBooking roomBooking);
-        Task<bool> DeleteAsync(int id);
-        Task<IEnumerable<RoomBooking>> GetAllAsync();
-        Task<RoomBooking?> GetByIdAsync(int id);
-        Task<IEnumerable<RoomBooking>> GetByRoomIdAsync(int roomId, DateTime? date = null);
-        Task<bool> IsValidRoomBookingAsync(int bookingId);
-        Task UpdateAsync(RoomBooking roomBooking);
+        Task<RoomBooking?> GetRoomBookingById(int id);
+        Task<IEnumerable<RoomBooking>> GetAllRoomBookings();
+        Task<IEnumerable<RoomBooking>> GetRoomBookingByRoomId(int roomId, DateTime? date = null);
+        Task CreateRoomBooking(RoomBooking roomBooking);
+        Task UpdateRoomBooking(RoomBooking roomBooking);
+        Task<bool> DeleteRoomBooking(int id);
+        Task<bool> IsRoomBookingValid(int bookingId);
     }
 }

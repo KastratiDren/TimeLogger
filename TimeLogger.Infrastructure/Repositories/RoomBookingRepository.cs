@@ -9,13 +9,56 @@
             _context = context;
         }
 
-        public async Task AddAsync(RoomBooking roomBooking)
+        public async Task<IEnumerable<RoomBooking>> GetAllRoomBookings()
+        {
+            var roomBookings = await _context.RoomsBookings
+                .Include(rb => rb.Room)
+                .ThenInclude(r => r.Office)
+                .ToListAsync();
+
+            return roomBookings;
+        }
+
+        public async Task<RoomBooking?> GetRoomBookingById(int id)
+        {
+            var roomBooking = await _context.RoomsBookings
+                .Include(rb => rb.Room)
+                .ThenInclude(r => r.Office)
+                .FirstOrDefaultAsync(rb => rb.Id == id);
+
+            return roomBooking;
+        }
+
+        public async Task<IEnumerable<RoomBooking>> GetRoomBookingByRoomId(int roomId, DateTime? date = null)
+        {
+            var roomBookings = await _context.RoomsBookings
+                .Where(rb => rb.RoomId == roomId)
+                .Include(rb => rb.Room)
+                .ThenInclude(r => r.Office)
+                .ToListAsync();
+
+            if (date.HasValue)
+            {
+                var selectedDate = date.Value.Date;
+                return roomBookings.Where(rb => rb.StartTime.Date == selectedDate || rb.EndTime.Date == selectedDate);
+            }
+
+            return roomBookings;
+        }
+
+        public async Task CreateRoomBooking(RoomBooking roomBooking)
         {
             await _context.RoomsBookings.AddAsync(roomBooking);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task UpdateRoomBooking(RoomBooking roomBooking)
+        {
+            _context.RoomsBookings.Update(roomBooking);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteRoomBooking(int id)
         {
             var roomBooking = await _context.RoomsBookings.FindAsync(id);
             if (roomBooking == null)
@@ -25,50 +68,10 @@
             await _context.SaveChangesAsync();
             return true;
         }
-
-        public async Task<IEnumerable<RoomBooking>> GetAllAsync()
-        {
-            return await _context.RoomsBookings
-                .Include(rb => rb.Room)
-                .ThenInclude(r => r.Office)
-                .ToListAsync();
-        }
-
-        public async Task<RoomBooking?> GetByIdAsync(int id)
-        {
-            return await _context.RoomsBookings
-                .Include(rb => rb.Room)
-                .ThenInclude(r => r.Office)
-                .FirstOrDefaultAsync(rb => rb.Id == id);
-        }
-
-        public async Task<IEnumerable<RoomBooking>> GetByRoomIdAsync(int roomId, DateTime? date = null)
-        {
-            var query = await _context.RoomsBookings
-                .Where(rb => rb.RoomId == roomId )
-                .Include(rb => rb.Room)
-                .ThenInclude(r => r.Office)
-                .ToListAsync();
-
-            if (date.HasValue)
-            {
-                var selectedDate = date.Value.Date; // Ensure we only compare the date part
-                return query.Where(rb =>rb.StartTime.Date == selectedDate || rb.EndTime.Date == selectedDate);
-            }
-
-            return query;
-        }
-
-
-        public async Task<bool> IsValidRoomBookingAsync(int bookingId)
+        
+        public async Task<bool> IsRoomBookingValid(int bookingId)
         {
             return await _context.RoomsBookings.AnyAsync(rb => rb.Id == bookingId);
-        }
-
-        public async Task UpdateAsync(RoomBooking roomBooking)
-        {
-            _context.RoomsBookings.Update(roomBooking);
-            await _context.SaveChangesAsync();
         }
     }
 }

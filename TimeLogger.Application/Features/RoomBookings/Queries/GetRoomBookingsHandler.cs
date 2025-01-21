@@ -19,7 +19,7 @@ namespace TimeLogger.Application.Features.RoomBookings.Queries
         public async Task<IEnumerable<RoomBookingsDto>> Handle(GetRoomBookings request, CancellationToken cancellationToken)
         {
             // Fetch room bookings by RoomId
-            var roomBookings = await _roomBookingRepository.GetByRoomIdAsync(request.RoomId);
+            var roomBookings = await _roomBookingRepository.GetRoomBookingByRoomId(request.RoomId);
 
             // Map entities to DTOs
             var roomBookingDetailsDtos = _mapper.Map<IEnumerable<RoomBookingsDto>>(roomBookings);
