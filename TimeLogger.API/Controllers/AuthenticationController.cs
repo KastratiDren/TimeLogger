@@ -1,11 +1,9 @@
 ﻿using TimeLogger.Application.Features.Authentication.Commands;
 using TimeLogger.Application.Features.Authentication.Dtos;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authentication")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -19,7 +17,7 @@ namespace TimeLogger.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -27,7 +25,7 @@ namespace TimeLogger.API.Controllers
             var command = new RegisterUser(registerDto);
             var userDto = await _mediator.Send(command);
 
-            return Ok(userDto);
+            return Ok(new { Message = "User registered successfully.", User = userDto });
         }
 
         [HttpPost("login")]
@@ -41,7 +39,10 @@ namespace TimeLogger.API.Controllers
             var command = new LoginUser(loginDto);
             var userDto = await _mediator.Send(command);
 
-            return Ok(userDto);
+            if (userDto == null)
+                return Unauthorized(new { Message = "Invalid login credentials." });
+
+            return Ok(new { Message = "Login successful.", User = userDto });
         }
     }
 }
