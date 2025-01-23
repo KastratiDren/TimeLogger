@@ -1,14 +1,10 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TimeLogger.Application.Features.Rooms.Commands;
+﻿using TimeLogger.Application.Features.Rooms.Commands;
 using TimeLogger.Application.Features.Rooms.Dtos;
 using TimeLogger.Application.Features.Rooms.Queries;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/rooms")]
     [ApiController]
     public class RoomController : ControllerBase
     {
@@ -19,7 +15,7 @@ namespace TimeLogger.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("CreateRoom")]
+        [HttpPost]
         public async Task<IActionResult> CreateRoom([FromBody] RoomDto roomDto)
         {
             if (!ModelState.IsValid)
@@ -31,18 +27,17 @@ namespace TimeLogger.API.Controllers
             return Ok(responseDto);
         }
 
-        [HttpGet("{id}")]
-        
-        public async Task<IActionResult> GetRoomById(int id)
+        [HttpGet("{roomId}")]
+        public async Task<IActionResult> GetRoomById(int roomId)
         {
-            if (id <= 0)
-                return BadRequest("Invalid Room Id");
+            if (roomId <= 0)
+                return BadRequest(new { Message = "Invalid Room ID." });
 
-            var query = new GetRoomById(id);
+            var query = new GetRoomById(roomId);
             var roomDetailsDto = await _mediator.Send(query);
 
             if (roomDetailsDto == null)
-                return NotFound($"Room with Id {id} was not found.");
+                return NotFound(new { Message = $"Room with ID {roomId} was not found." });
 
             return Ok(roomDetailsDto);
         }
@@ -55,7 +50,5 @@ namespace TimeLogger.API.Controllers
 
             return Ok(roomListDtos);
         }
-
-
     }
 }
