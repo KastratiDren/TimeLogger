@@ -1,12 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TimeLogger.Application.Features.Users.Commands;
+﻿using TimeLogger.Application.Features.Users.Commands;
 using TimeLogger.Application.Features.Users.Queries;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -18,14 +15,13 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllUsers()
         {
             var query = new GetAllUsers();
             var usersDtos = await _mediator.Send(query);
 
-            if(usersDtos == null)
-                return NotFound();
+            if (usersDtos == null || !usersDtos.Any())
+                return NotFound(new { Message = "No users found." });
 
             return Ok(usersDtos);
         }
@@ -36,10 +32,10 @@ namespace TimeLogger.API.Controllers
             var query = new GetUserById(id);
             var userDto = await _mediator.Send(query);
 
-            if(userDto == null)
-                return NotFound();
+            if (userDto == null)
+                return NotFound(new { Message = $"User with ID {id} not found." });
 
-            return Ok(userDto); 
+            return Ok(userDto);
         }
 
         [HttpDelete("{id}")]
@@ -48,10 +44,10 @@ namespace TimeLogger.API.Controllers
             var command = new DeleteUser(id);
             var result = await _mediator.Send(command);
 
-            if(result == false)
-                return NotFound();
+            if (!result)
+                return NotFound(new { Message = $"User with ID {id} not found or could not be deleted." });
 
-            return Ok(result);
+            return Ok(new { Message = "User deleted successfully." });
         }
     }
 }
