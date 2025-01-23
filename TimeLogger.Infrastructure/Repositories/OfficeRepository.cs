@@ -15,17 +15,6 @@
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteOffice(int id)
-        {
-            var office = await _context.Offices.FindAsync(id);
-            if (office == null)
-                return false;
-
-            _context.Offices.Remove(office);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
         public async Task<IEnumerable<Office>> GetAllOffices()
         {
             var offices = await _context.Offices
@@ -46,17 +35,6 @@
                 .FirstOrDefaultAsync(o => o.Id == id);
 
             return office;
-        }
-
-        public async Task<bool> IsOfficeValid(int officeId)
-        {
-            return await _context.Offices.AnyAsync(o => o.Id == officeId);
-        }
-
-        public async Task UpdateOffice(Office office)
-        {
-            _context.Offices.Update(office);
-            await _context.SaveChangesAsync();
         }
     }
 }

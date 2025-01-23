@@ -7,8 +7,5 @@ namespace TimeLogger.Application.IRepositories
         Task<Office?> GetOfficeById(int id);
         Task<IEnumerable<Office>> GetAllOffices();
         Task CreateOffice(Office office);
-        Task UpdateOffice(Office office);
-        Task<bool> DeleteOffice(int id);
-        Task<bool> IsOfficeValid(int officeId);
     }
 }

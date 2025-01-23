@@ -7,8 +7,6 @@ namespace TimeLogger.Application.IRepositories
         Task<IEnumerable<Room>> GetAllRooms();
         Task<Room?> GetRoomById(int id);
         Task CreateRoom(Room room);
-        Task<bool> DeleteRoom(int id);
-        Task UpdateRoom(Room room);
         Task<bool> IsRoomValid(int roomId);
     }
 }

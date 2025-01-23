@@ -6,7 +6,6 @@ namespace TimeLogger.Application.IRepositories
     {
         Task<User?> GetUserById(string userId);
         Task<IEnumerable<User>> GetAllUsers();
-        Task UpdateUser(User user);
         Task<bool> DeleteUser(string userId);
     }
 }

@@ -19,16 +19,6 @@
             return roomBookings;
         }
 
-        public async Task<RoomBooking?> GetRoomBookingById(int id)
-        {
-            var roomBooking = await _context.RoomsBookings
-                .Include(rb => rb.Room)
-                .ThenInclude(r => r.Office)
-                .FirstOrDefaultAsync(rb => rb.Id == id);
-
-            return roomBooking;
-        }
-
         public async Task<IEnumerable<RoomBooking>> GetRoomBookingByRoomId(int roomId, DateTime? date = null)
         {
             var roomBookings = await _context.RoomsBookings
@@ -50,28 +40,6 @@
         {
             await _context.RoomsBookings.AddAsync(roomBooking);
             await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateRoomBooking(RoomBooking roomBooking)
-        {
-            _context.RoomsBookings.Update(roomBooking);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<bool> DeleteRoomBooking(int id)
-        {
-            var roomBooking = await _context.RoomsBookings.FindAsync(id);
-            if (roomBooking == null)
-                return false;
-
-            _context.RoomsBookings.Remove(roomBooking);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-        
-        public async Task<bool> IsRoomBookingValid(int bookingId)
-        {
-            return await _context.RoomsBookings.AnyAsync(rb => rb.Id == bookingId);
         }
     }
 }
