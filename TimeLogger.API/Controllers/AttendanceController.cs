@@ -1,11 +1,8 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using TimeLogger.Application.Features.Attendances.Queries;
-using TimeLogger.Domain.Entites;
+﻿using TimeLogger.Application.Features.Attendances.Queries;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/attendances")]
     [ApiController]
     public class AttendanceController : ControllerBase
     {
@@ -16,59 +13,52 @@ namespace TimeLogger.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<List<Attendance>>> GetAttendanceByUserId(string userId)
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetAttendanceByUserId(string userId)
         {
             var query = new GetAttendanceByUserId(userId);
+            var result = await _mediator.Send(query);
 
-            var attendance = await _mediator.Send(query);
-
-            if (attendance == null || attendance.Count == 0)
+            if (result == null || result.Count == 0)
             {
                 return NotFound(new { Message = "No attendance records found for the specified user." });
             }
 
-            return Ok(attendance);
+            return Ok(result);
         }
 
         [HttpGet("date/{date}")]
-        public async Task<ActionResult<List<Attendance>>> GetAttendanceByDate(DateOnly date)
+        public async Task<IActionResult> GetAttendanceByDate(DateOnly date)
         {
             var query = new GetAttendanceByDate(date);
+            var result = await _mediator.Send(query);
 
-            var attendance = await _mediator.Send(query);
-
-            if (attendance == null || attendance.Count == 0)
+            if (result == null || result.Count == 0)
             {
                 return NotFound(new { Message = "No attendance records found for the specified date." });
             }
 
-            return Ok(attendance);
+            return Ok(result);
         }
 
-        // New Endpoint: Get daily work hours
-        [HttpGet("DailyWorkHours")]
-        public async Task<ActionResult<TimeSpan?>> GetDailyWorkHours(string userId)
+        [HttpGet("{userId}/daily-work-duration")]
+        public async Task<IActionResult> GetDailyWorkDuration(string userId)
         {
             var query = new GetDailyWorkHours(userId);
-
             var result = await _mediator.Send(query);
 
             if (result == null)
-            {
-                return NotFound(new { Message = "Unable to calculate work hours (missing CheckIn or CheckOut)." });
-            }
+                return NotFound(new { Message = "User hasn't logged in any office today." });
 
             var formattedResult = result.Value.ToString(@"hh\:mm");
 
-            return Ok(formattedResult);
+            return Ok(new { DailyWorkDuration = formattedResult });
         }
 
-        [HttpGet("{userId}/WeeklyWorkHours")]
-        public async Task<ActionResult<TimeSpan>> GetWeeklyWorkHours(string userId)
+        [HttpGet("{userId}/weekly-work-duration")]
+        public async Task<IActionResult> GetWeeklyWorkDuration(string userId)
         {
             var query = new GetWeeklyWorkHours(userId);
-
             var result = await _mediator.Send(query);
 
             if (result == TimeSpan.Zero)
@@ -78,24 +68,23 @@ namespace TimeLogger.API.Controllers
 
             var formattedResult = result.ToString(@"hh\:mm");
 
-            return Ok(new { WeeklyWorkHours = formattedResult });
+            return Ok(new { WeeklyWorkDuration = formattedResult });
         }
 
-        [HttpGet("MonthlyWorkDuration/{userId}")]
-        public async Task<ActionResult<TimeSpan>> GetMonthlyWorkDuration(string userId)
+        [HttpGet("{userId}/monthly-work-duration")]
+        public async Task<IActionResult> GetMonthlyWorkDuration(string userId)
         {
             var query = new GetMonthlyWorkDuration(userId);
-
             var result = await _mediator.Send(query);
 
             if (result == TimeSpan.Zero)
             {
-                return NotFound(new { Message = "No work duration found for the specified user in the current month." });
+                return NotFound(new { Message = "User hasn't logged any office this month." });
             }
 
             var formattedResult = result.ToString(@"hh\:mm");
-            return Ok(new { TotalWorkDuration = formattedResult });
-        }
 
+            return Ok(new { MonthlyWorkDuration = formattedResult });
+        }
     }
 }
