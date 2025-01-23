@@ -1,12 +1,10 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using TimeLogger.Application.Features.Checkouts.Commands;
+﻿using TimeLogger.Application.Features.Checkouts.Commands;
 using TimeLogger.Application.Features.Checkouts.Dtos;
 using TimeLogger.Application.Features.Checkouts.Queries;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/checkouts")]
     [ApiController]
     public class CheckOutController : ControllerBase
     {
@@ -17,31 +15,33 @@ namespace TimeLogger.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("Checkout")]
-        public async Task<IActionResult> Checkout(CheckOutDto checkOutDto)
+        [HttpPost]
+        public async Task<IActionResult> CheckOut([FromBody] CheckOutDto checkOutDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var command = new UserCheckOut(checkOutDto);
             var result = await _mediator.Send(command);
 
-            if (result == false)
-                return BadRequest(result);
+            if (!result)
+                return BadRequest(new { Message = "Check-out failed." });
 
-            return Ok(result);
+            return Ok(new { Message = "Check-out successful." });
         }
 
-        [HttpGet("AverageCheckOutTime/{userId}")]
-        public async Task<IActionResult> GetUserAverageCheckOutTime(string userId)
+        [HttpGet("{userId}/average-checkout-time")]
+        public async Task<IActionResult> GetAverageUserCheckOutTime(string userId)
         {
             var query = new GetUserAverageCheckOutTime(userId);
             var result = await _mediator.Send(query);
 
             if (result == null)
-                return NotFound("No check-outs found for the user.");
+                return NotFound(new { Message = "No check-outs found for the specified user." });
 
-            // Format the TimeSpan to include only hours and minutes
             var formattedResult = result.Value.ToString(@"hh\:mm");
 
-            return Ok(formattedResult);
+            return Ok(new { AverageCheckOutTime = formattedResult });
         }
     }
 }
