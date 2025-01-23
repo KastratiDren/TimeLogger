@@ -1,12 +1,10 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using TimeLogger.Application.Features.Checkins.Commands;
+﻿using TimeLogger.Application.Features.Checkins.Commands;
 using TimeLogger.Application.Features.Checkins.Dto;
 using TimeLogger.Application.Features.Checkins.Queries;
 
 namespace TimeLogger.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/checkins")]
     [ApiController]
     public class CheckInController : ControllerBase
     {
@@ -17,32 +15,33 @@ namespace TimeLogger.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("Checkin")]
-        public async Task<IActionResult> Checkin(CheckInDto checkInDto)
+        [HttpPost]
+        public async Task<IActionResult> CheckIn([FromBody] CheckInDto checkInDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var command = new UserCheckIn(checkInDto);
             var result = await _mediator.Send(command);
 
-            if(result == false)
-                return BadRequest(result);
+            if (!result)
+                return BadRequest(new { Message = "Check-in failed." });
 
-            return Ok(result);
+            return Ok(new { Message = "Check-in successful." });
         }
 
-        [HttpGet("AverageCheckInTime/{userId}")]
+        [HttpGet("{userId}/average-checkin-time")]
         public async Task<IActionResult> GetUserAverageCheckInTime(string userId)
         {
             var query = new GetUserAverageCheckInTime(userId);
             var result = await _mediator.Send(query);
 
             if (result == null)
-                return NotFound("No check-ins found for the user.");
+                return NotFound(new { Message = "No check-ins found for the specified user." });
 
-            // Format the TimeSpan to include only hours and minutes
             var formattedResult = result.Value.ToString(@"hh\:mm");
 
-            return Ok(formattedResult);
+            return Ok(new { AverageCheckInTime = formattedResult });
         }
-
     }
 }
