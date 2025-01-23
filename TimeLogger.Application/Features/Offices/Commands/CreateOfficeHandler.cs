@@ -21,7 +21,7 @@ namespace TimeLogger.Application.Features.Offices.Commands
         {
             var office = _mapper.Map<Office>(request.officeDto);
 
-            await _officeRepository.AddAsync(office);
+            await _officeRepository.CreateOffice(office);
 
             var responseDto = _mapper.Map<OfficeDto>(office);
 

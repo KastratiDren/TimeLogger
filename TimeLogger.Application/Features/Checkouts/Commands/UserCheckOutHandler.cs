@@ -27,13 +27,13 @@ namespace TimeLogger.Application.Features.Checkouts.Commands
             var userId = request.CheckOutDto.UserId;
             var officeId = request.CheckOutDto.OfficeId;
 
-            var todayCheckInForOffice = (await _checkInRepository.GetByUserIdAsync(userId))
+            var todayCheckInForOffice = (await _checkInRepository.GetCheckInsByUserId(userId))
                 .FirstOrDefault(c => c.CheckInTime.Date == today && c.OfficeId == officeId);
 
             if (todayCheckInForOffice == null)
                 return false; 
 
-            var todayCheckOutForOffice = (await _checkOutRepository.GetByUserIdAsync(userId))
+            var todayCheckOutForOffice = (await _checkOutRepository.GetCheckOutsByUserId(userId))
                 .FirstOrDefault(c => c.CheckOutTime.Date == today && c.OfficeId == officeId);
 
             if (todayCheckOutForOffice != null)
@@ -42,7 +42,7 @@ namespace TimeLogger.Application.Features.Checkouts.Commands
             var checkOut = _mapper.Map<CheckOut>(request.CheckOutDto);
             checkOut.CheckOutTime = DateTime.Now;
 
-            await _checkOutRepository.AddAsync(checkOut);
+            await _checkOutRepository.CreateCheckOut(checkOut);
             return true;
         }
 

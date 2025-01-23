@@ -22,14 +22,14 @@ namespace TimeLogger.Application.Features.Checkins.Commands
             var userId = request.CheckInDto.UserId;
             var officeId = request.CheckInDto.OfficeId;
 
-            var existingCheckIn = await _checkInRepository.GetByUserIdAsync(userId);
+            var existingCheckIn = await _checkInRepository.GetCheckInsByUserId(userId);
             if (existingCheckIn.Any(c => c.CheckInTime.Date == today && c.OfficeId == officeId))
                 return false;
 
             var checkIn = _mapper.Map<CheckIn>(request.CheckInDto);
             checkIn.CheckInTime = DateTime.Now;
 
-            await _checkInRepository.AddAsync(checkIn);
+            await _checkInRepository.CreateCheckIn(checkIn);
             return true;
         }
     }

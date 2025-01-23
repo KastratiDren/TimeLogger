@@ -17,7 +17,7 @@ namespace TimeLogger.Application.Features.Users.Commands
 
         public async Task<bool> Handle(DeleteUser request, CancellationToken cancellationToken)
         {
-            var result = await _userRepository.DeleteAsync(request.UserId);
+            var result = await _userRepository.DeleteUser(request.UserId);
             return result;
         }
     }

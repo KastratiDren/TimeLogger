@@ -1,14 +1,10 @@
-﻿using TimeLogger.Domain.Entites;
-using TimeLogger.Infrastructure.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TimeLogger.Application.IServices;
 using TimeLogger.Infrastructure.Services;
-using TimeLogger.Application.IRepositories;
 using TimeLogger.Infrastructure.Repositories;
 
 namespace TimeLogger.Infrastructure

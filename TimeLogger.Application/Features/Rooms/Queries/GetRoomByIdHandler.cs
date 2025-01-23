@@ -19,7 +19,7 @@ namespace TimeLogger.Application.Features.Rooms.Queries
         public async Task<RoomDto?> Handle(GetRoomById request, CancellationToken cancellationToken)
         {
             // Fetch room entity
-            var room = await _roomRepository.GetByIdAsync(request.Id);
+            var room = await _roomRepository.GetRoomById(request.Id);
 
             if (room == null)
                 return null; // Or throw a NotFoundException if using exception handling

@@ -18,7 +18,7 @@ namespace TimeLogger.Application.Features.Users.Queries
 
         public async Task<List<ProfileDto>> Handle(GetAllUsers request, CancellationToken cancellationToken)
         {
-            var users = await _userRepository.GetAllAsync();
+            var users = await _userRepository.GetAllUsers();
             var usersDtos = _mapper.Map<List<ProfileDto>>(users);
 
             return usersDtos;

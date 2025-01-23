@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TimeLogger.Application.Features.Attendances.Queries;
-using TimeLogger.Application.Features.Attendances.Dto;
 using TimeLogger.Domain.Entites;
 
 namespace TimeLogger.API.Controllers

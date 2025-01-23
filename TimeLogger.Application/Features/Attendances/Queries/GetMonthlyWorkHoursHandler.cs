@@ -20,7 +20,7 @@ namespace TimeLogger.Application.Features.Attendances.Queries
             var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
             var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
 
-            var totalWorkDuration = await _attendanceRepository.GetUserTotalWorkDuration(request.UserId, startOfMonth, endOfMonth);
+            var totalWorkDuration = await _attendanceRepository.GetTotalWorkDurationByUserId(request.UserId, startOfMonth, endOfMonth);
 
             return totalWorkDuration;
         }

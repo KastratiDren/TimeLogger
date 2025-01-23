@@ -15,11 +15,10 @@ namespace TimeLogger.Application.Features.Attendances.Queries
         public async Task<TimeSpan?> Handle(GetDailyWorkHours request, CancellationToken cancellationToken)
         {
             var currentDate = DateTime.Now;
-            var startOfDay = currentDate.Date; // This gives you today's date at 00:00:00
-            var endOfDay = startOfDay.AddDays(1).AddSeconds(-1); // This gives you today's date at 23:59:59
+            var startOfDay = currentDate.Date; 
+            var endOfDay = startOfDay.AddDays(1).AddSeconds(-1); 
 
-            // Get the total work duration for today
-            var totalWorkDuration = await _attendanceRepository.GetUserTotalWorkDuration(request.UserId, startOfDay, endOfDay);
+            var totalWorkDuration = await _attendanceRepository.GetTotalWorkDurationByUserId(request.UserId, startOfDay, endOfDay);
 
             return totalWorkDuration;
         }

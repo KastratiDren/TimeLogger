@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
-using TimeLogger.Infrastructure.Data;
-
-namespace TimeLogger.Infrastructure.Repositories
+﻿namespace TimeLogger.Infrastructure.Repositories
 {
     public class AttendanceRepository : IAttendanceRepository
     {
@@ -14,7 +9,7 @@ namespace TimeLogger.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Attendance>> GetAttendanceByUserIdAsync(string userId)
+        public async Task<List<Attendance>> GetAttendancesByUserId(string userId)
         {
             var attendanceRecords = await _context.CheckIns
                 .Where(ci => ci.UserId == userId)
@@ -52,10 +47,10 @@ namespace TimeLogger.Infrastructure.Repositories
             return attendanceRecords;
         }
 
-        public async Task<List<Attendance>> GetAttendanceByDateAsync(DateTime date)
+        public async Task<List<Attendance>> GetAttendancesByDate(DateTime date)
         {
             var attendanceRecords = await _context.CheckIns
-                .Where(ci => ci.CheckInTime.Date == date) // Filter by specific date
+                .Where(ci => ci.CheckInTime.Date == date)
                 .Select(ci => new
                 {
                     ci.CheckInTime,
@@ -89,30 +84,26 @@ namespace TimeLogger.Infrastructure.Repositories
             return attendanceRecords;
         }
 
-        public async Task<TimeSpan> GetUserTotalWorkDuration(string userId, DateTime startDate, DateTime endDate)
+        public async Task<TimeSpan> GetTotalWorkDurationByUserId(string userId, DateTime startDate, DateTime endDate)
         {
-            // Retrieve all the check-ins within the specified date range
-            var userCheckIns = await _context.CheckIns
+            var checkIns = await _context.CheckIns
                 .Where(ci => ci.UserId == userId && ci.CheckInTime >= startDate && ci.CheckInTime <= endDate)
                 .ToListAsync();
 
-            // Retrieve all the check-outs within the specified date range
-            var userCheckOuts = await _context.CheckOuts
+            var checkOuts = await _context.CheckOuts
                 .Where(co => co.UserId == userId && co.CheckOutTime >= startDate && co.CheckOutTime <= endDate)
                 .ToListAsync();
 
-            // Calculate total work duration by matching check-ins to check-outs
-            var userTotalWorkDuration = userCheckIns
+            var totalWorkDuration = checkIns
                 .Select(ci =>
                 {
-                    var matchingCheckOut = userCheckOuts
+                    var matchingCheckOut = checkOuts
                         .Where(co => co.OfficeId == ci.OfficeId
                                     && co.CheckOutTime.Date == ci.CheckInTime.Date
                                     && co.CheckOutTime > ci.CheckInTime)
                         .OrderBy(co => co.CheckOutTime)
                         .FirstOrDefault();
 
-                    // Calculate the duration for each check-in/check-out pair
                     return matchingCheckOut != null
                         ? (TimeSpan?)(matchingCheckOut.CheckOutTime - ci.CheckInTime)
                         : null;
@@ -120,7 +111,7 @@ namespace TimeLogger.Infrastructure.Repositories
                 .Where(duration => duration.HasValue)
                 .Aggregate(TimeSpan.Zero, (sum, duration) => sum + duration.Value);
 
-            return userTotalWorkDuration;
+            return totalWorkDuration;
         }
     }
 }

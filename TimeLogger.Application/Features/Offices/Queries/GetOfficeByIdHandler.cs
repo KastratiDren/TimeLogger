@@ -19,7 +19,7 @@ namespace TimeLogger.Application.Features.Offices.Queries
         public async Task<OfficeDto> Handle(GetOfficeById request, CancellationToken cancellationToken)
         {
 
-            var office = await _officeRepository.GetByIdAsync(request.id);
+            var office = await _officeRepository.GetOfficeById(request.id);
 
             if (office == null)
                 return null;

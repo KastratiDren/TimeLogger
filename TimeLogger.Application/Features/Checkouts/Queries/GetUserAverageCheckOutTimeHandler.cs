@@ -15,7 +15,7 @@ namespace TimeLogger.Application.Features.Checkouts.Queries
         public async Task<TimeSpan?> Handle(GetUserAverageCheckOutTime request, CancellationToken cancellationToken)
         {
             // Retrieve the average check-in time using the repository
-            var checkOuts = await _repository.GetByUserIdAsync(request.userId);
+            var checkOuts = await _repository.GetCheckOutsByUserId(request.userId);
 
             if (checkOuts == null || !checkOuts.Any())
                 return null;
