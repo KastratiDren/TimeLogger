@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.Checkouts.Commands;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.Checkouts.Commands;
 using TimeLogger.Application.Features.Checkouts.Dtos;
 using TimeLogger.Application.Features.Checkouts.Queries;
 
@@ -16,6 +17,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CheckOut([FromBody] CheckOutDto checkOutDto)
         {
             if (!ModelState.IsValid)
@@ -31,6 +33,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{userId}/average-checkout-time")]
+        [Authorize]
         public async Task<IActionResult> GetAverageUserCheckOutTime(string userId)
         {
             var query = new GetUserAverageCheckOutTime(userId);

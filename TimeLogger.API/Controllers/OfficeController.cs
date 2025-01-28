@@ -17,6 +17,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateOffice([FromBody] OfficeDto officeDto)
         {
             if (!ModelState.IsValid)
@@ -29,6 +30,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{officeId}")]
+        [Authorize]
         public async Task<IActionResult> GetOfficeById(int officeId)
         {
             if (officeId <= 0)
@@ -44,6 +46,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllOffices()
         {
             var query = new GetAllOffices();

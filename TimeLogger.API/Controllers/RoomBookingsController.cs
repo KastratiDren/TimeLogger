@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.RoomBookings.Commands;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.RoomBookings.Commands;
 using TimeLogger.Application.Features.RoomBookings.Dtos;
 using TimeLogger.Application.Features.RoomBookings.Queries;
 
@@ -16,6 +17,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllRoomBookings()
         {
             var query = new GetAllRoomBookings();
@@ -28,6 +30,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("room/{roomId}")]
+        [Authorize]
         public async Task<IActionResult> GetRoomBookingsByRoomId(int roomId)
         {
             if (roomId <= 0)
@@ -43,6 +46,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateRoomBooking([FromBody] RoomBookingsDto roomBookingsDto)
         {
             if (!ModelState.IsValid)

@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.Attendances.Queries;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.Attendances.Queries;
 
 namespace TimeLogger.API.Controllers
 {
@@ -14,6 +15,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("user/{userId}")]
+        [Authorize]
         public async Task<IActionResult> GetAttendanceByUserId(string userId)
         {
             var query = new GetAttendanceByUserId(userId);
@@ -28,6 +30,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("date/{date}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAttendanceByDate(DateOnly date)
         {
             var query = new GetAttendanceByDate(date);
@@ -42,6 +45,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{userId}/daily-work-duration")]
+        [Authorize]
         public async Task<IActionResult> GetDailyWorkDuration(string userId)
         {
             var query = new GetDailyWorkHours(userId);
@@ -56,6 +60,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{userId}/weekly-work-duration")]
+        [Authorize]
         public async Task<IActionResult> GetWeeklyWorkDuration(string userId)
         {
             var query = new GetWeeklyWorkHours(userId);
@@ -72,6 +77,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{userId}/monthly-work-duration")]
+        [Authorize]
         public async Task<IActionResult> GetMonthlyWorkDuration(string userId)
         {
             var query = new GetMonthlyWorkDuration(userId);

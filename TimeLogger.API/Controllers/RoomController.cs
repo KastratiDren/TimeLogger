@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.Rooms.Commands;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.Rooms.Commands;
 using TimeLogger.Application.Features.Rooms.Dtos;
 using TimeLogger.Application.Features.Rooms.Queries;
 
@@ -16,6 +17,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateRoom([FromBody] RoomDto roomDto)
         {
             if (!ModelState.IsValid)
@@ -28,6 +30,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{roomId}")]
+        [Authorize]
         public async Task<IActionResult> GetRoomById(int roomId)
         {
             if (roomId <= 0)
@@ -43,6 +46,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllRooms()
         {
             var query = new GetAllRooms();

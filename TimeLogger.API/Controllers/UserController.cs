@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.Users.Commands;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.Users.Commands;
 using TimeLogger.Application.Features.Users.Queries;
 
 namespace TimeLogger.API.Controllers
@@ -15,6 +16,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsers()
         {
             var query = new GetAllUsers();
@@ -27,6 +29,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserById(string id)
         {
             var query = new GetUserById(id);
@@ -39,6 +42,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var command = new DeleteUser(id);

@@ -1,4 +1,5 @@
-﻿using TimeLogger.Application.Features.Checkins.Commands;
+﻿using Microsoft.AspNetCore.Authorization;
+using TimeLogger.Application.Features.Checkins.Commands;
 using TimeLogger.Application.Features.Checkins.Dto;
 using TimeLogger.Application.Features.Checkins.Queries;
 
@@ -16,6 +17,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CheckIn([FromBody] CheckInDto checkInDto)
         {
             if (!ModelState.IsValid)
@@ -31,6 +33,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpGet("{userId}/average-checkin-time")]
+        [Authorize]
         public async Task<IActionResult> GetUserAverageCheckInTime(string userId)
         {
             var query = new GetUserAverageCheckInTime(userId);
