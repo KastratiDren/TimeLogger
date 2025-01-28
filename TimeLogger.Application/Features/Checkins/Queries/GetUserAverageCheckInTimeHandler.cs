@@ -14,7 +14,6 @@ namespace TimeLogger.Application.Features.Checkins.Queries
 
         public async Task<TimeSpan?> Handle(GetUserAverageCheckInTime request, CancellationToken cancellationToken)
         {
-            // Retrieve the average check-in time using the repository
             var checkIns = await _repository.GetCheckInsByUserId(request.userId);
 
             if (checkIns == null || !checkIns.Any())
@@ -22,7 +21,6 @@ namespace TimeLogger.Application.Features.Checkins.Queries
 
             var averageCheckInTime = new TimeSpan((long)checkIns.Average(c => c.CheckInTime.Ticks));
 
-            // Return the result
             return averageCheckInTime;
         }
     }

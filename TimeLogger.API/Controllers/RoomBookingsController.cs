@@ -36,7 +36,7 @@ namespace TimeLogger.API.Controllers
             if (roomId <= 0)
                 return BadRequest(new { Message = "Invalid Room ID." });
 
-            var query = new GetRoomBookings(roomId);
+            var query = new GetRoomBookingsByRoomId(roomId);
             var roomBookingDetailsDtos = await _mediator.Send(query);
 
             if (roomBookingDetailsDtos == null || !roomBookingDetailsDtos.Any())

@@ -19,13 +19,10 @@ namespace TimeLogger.Application.Features.Rooms.Commands
 
         public async Task<RoomDto> Handle(CreateRoom request, CancellationToken cancellationToken)
         {
-            // Map DTO to Entity
             var room = _mapper.Map<Room>(request.RoomDto);
 
-            // Add to repository
             await _roomRepository.CreateRoom(room);
 
-            // Map Entity back to DTO
             var responseDto = _mapper.Map<RoomDto>(room);
 
             return responseDto;

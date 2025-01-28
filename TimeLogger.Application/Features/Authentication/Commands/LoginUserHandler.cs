@@ -45,10 +45,8 @@ namespace TimeLogger.Application.Features.Authentication.Commands
 
                 var roles = await _userManager.GetRolesAsync(user);
 
-                // Generate the token
                 var token = await _tokenService.GenerateJwtToken(user);
 
-                // Map the user entity to the DTO
                 var userDto = _mapper.Map<UserDto>(user);
                 userDto.Token = token;
                 userDto.Role = roles.FirstOrDefault();

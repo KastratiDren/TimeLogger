@@ -24,12 +24,10 @@ namespace TimeLogger.Application.Features.RoomBookings.Handlers
         {
             var dto = request.RoomBookingsDto;
 
-            // Validate Room Existence
             var roomExists = await _roomRepository.IsRoomValid(dto.RoomId);
             if (!roomExists)
                 throw new ArgumentException($"Room with ID {dto.RoomId} does not exist.");
 
-            // Validate Overlapping Bookings
             var existingBookings = await _roomBookingRepository.GetRoomBookingByRoomId(dto.RoomId);
             var hasConflict = existingBookings.Any(b =>
                 (dto.StartTime >= b.StartTime && dto.StartTime < b.EndTime) ||
@@ -40,7 +38,6 @@ namespace TimeLogger.Application.Features.RoomBookings.Handlers
             if (hasConflict)
                 throw new InvalidOperationException("The room is already booked for the specified timeframe.");
 
-            // Create the RoomBooking
             var roomBooking = _mapper.Map<RoomBooking>(dto);
 
             await _roomBookingRepository.CreateRoomBooking(roomBooking);
