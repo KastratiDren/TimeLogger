@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.Features.Users.Dtos;
-using TimeLogger.Application.IRepositories;
+﻿using TimeLogger.Application.Features.Users.Dtos;
 
 namespace TimeLogger.Application.Features.Users.Queries
 {

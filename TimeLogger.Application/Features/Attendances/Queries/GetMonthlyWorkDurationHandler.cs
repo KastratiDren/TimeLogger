@@ -1,11 +1,6 @@
-﻿using MediatR;
-using TimeLogger.Application.IRepositories;
-
-namespace TimeLogger.Application.Features.Attendances.Queries
+﻿namespace TimeLogger.Application.Features.Attendances.Queries
 {
-    public record GetMonthlyWorkDuration(string UserId) : IRequest<TimeSpan>;
-
-    public class GetMonthlyWorkDurationHandler : IRequestHandler<GetMonthlyWorkDuration, TimeSpan>
+    public class GetMonthlyWorkDurationHandler : IRequestHandler<GetMonthlyWorkDuration, TimeSpan?>
     {
         private readonly IAttendanceRepository _attendanceRepository;
 
@@ -14,7 +9,7 @@ namespace TimeLogger.Application.Features.Attendances.Queries
             _attendanceRepository = attendanceRepository;
         }
 
-        public async Task<TimeSpan> Handle(GetMonthlyWorkDuration request, CancellationToken cancellationToken)
+        public async Task<TimeSpan?> Handle(GetMonthlyWorkDuration request, CancellationToken cancellationToken)
         {
             var currentDate = DateTime.Now;
             var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);

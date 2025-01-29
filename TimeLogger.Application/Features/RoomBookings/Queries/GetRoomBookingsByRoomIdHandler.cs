@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.Features.RoomBookings.Dtos;
-using TimeLogger.Application.IRepositories;
+﻿using TimeLogger.Application.Features.RoomBookings.Dtos;
 
 namespace TimeLogger.Application.Features.RoomBookings.Queries
 {

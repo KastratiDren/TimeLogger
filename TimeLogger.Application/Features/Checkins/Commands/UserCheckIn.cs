@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.Features.Checkins.Dto;
+﻿using TimeLogger.Application.Features.Checkins.Dto;
 
 namespace TimeLogger.Application.Features.Checkins.Commands
 {

@@ -1,8 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
-
-namespace TimeLogger.Application.Features.Attendances.Queries
+﻿namespace TimeLogger.Application.Features.Attendances.Queries
 {
     public class GetAttendanceByDateHandler : IRequestHandler<GetAttendanceByDate, List<Attendance>>
     {

@@ -1,6 +1,4 @@
-﻿using TimeLogger.Domain.Entites;
-
-namespace TimeLogger.Application.IServices
+﻿namespace TimeLogger.Application.IServices
 {
     public interface ITokenService
     {

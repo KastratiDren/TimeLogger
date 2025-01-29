@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.Features.Rooms.Dtos;
+﻿using TimeLogger.Application.Features.Rooms.Dtos;
 
 namespace TimeLogger.Application.Features.Rooms.Queries
 {

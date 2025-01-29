@@ -1,7 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.IRepositories;
-
-namespace TimeLogger.Application.Features.Checkins.Queries
+﻿namespace TimeLogger.Application.Features.Checkins.Queries
 {
     public class GetUserAverageCheckInTimeHandler : IRequestHandler<GetUserAverageCheckInTime, TimeSpan?>
     {

@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using TimeLogger.Application.Features.Authentication.Dtos;
 using TimeLogger.Application.IServices;
-using TimeLogger.Domain.Entites;
 
 namespace TimeLogger.Application.Features.Authentication.Commands
 {

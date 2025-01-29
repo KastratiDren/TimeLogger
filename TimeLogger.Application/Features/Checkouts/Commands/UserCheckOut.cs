@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.Features.Checkouts.Dtos;
+﻿using TimeLogger.Application.Features.Checkouts.Dtos;
 
 namespace TimeLogger.Application.Features.Checkouts.Commands
 {

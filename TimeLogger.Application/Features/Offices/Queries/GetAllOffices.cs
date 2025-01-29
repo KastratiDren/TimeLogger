@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.Features.Offices.Dtos;
+﻿using TimeLogger.Application.Features.Offices.Dtos;
 
 namespace TimeLogger.Application.Features.Offices.Queries
 {

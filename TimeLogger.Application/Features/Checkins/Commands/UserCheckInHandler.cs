@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
-
-namespace TimeLogger.Application.Features.Checkins.Commands
+﻿namespace TimeLogger.Application.Features.Checkins.Commands
 {
     public class UserCheckInHandler : IRequestHandler<UserCheckIn, bool>
     {

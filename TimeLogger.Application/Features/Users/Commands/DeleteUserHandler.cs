@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.IRepositories;
-
-namespace TimeLogger.Application.Features.Users.Commands
+﻿namespace TimeLogger.Application.Features.Users.Commands
 {
     public class DeleteUserHandler : IRequestHandler<DeleteUser, bool>
     {

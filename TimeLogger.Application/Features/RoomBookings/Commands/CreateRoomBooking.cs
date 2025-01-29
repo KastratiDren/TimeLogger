@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TimeLogger.Application.Features.RoomBookings.Dtos;
+﻿using TimeLogger.Application.Features.RoomBookings.Dtos;
 
 namespace TimeLogger.Application.Features.RoomBookings.Commands
 {

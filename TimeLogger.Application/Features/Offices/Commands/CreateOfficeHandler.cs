@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.Features.Offices.Dtos;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
+﻿using TimeLogger.Application.Features.Offices.Dtos;
 
 namespace TimeLogger.Application.Features.Offices.Commands
 {

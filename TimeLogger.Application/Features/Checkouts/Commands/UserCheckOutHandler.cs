@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using TimeLogger.Application.IRepositories;
-using TimeLogger.Domain.Entites;
-
-namespace TimeLogger.Application.Features.Checkouts.Commands
+﻿namespace TimeLogger.Application.Features.Checkouts.Commands
 {
     public class UserCheckOutHandler : IRequestHandler<UserCheckOut, bool>
     {

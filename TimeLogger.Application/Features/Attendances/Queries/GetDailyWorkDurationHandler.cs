@@ -1,18 +1,15 @@
-﻿using MediatR;
-using TimeLogger.Application.IRepositories;
-
-namespace TimeLogger.Application.Features.Attendances.Queries
+﻿namespace TimeLogger.Application.Features.Attendances.Queries
 {
-    public class GetDailyWorkHoursHandler : IRequestHandler<GetDailyWorkHours, TimeSpan?>
+    public class GetDailyWorkDurationHandler : IRequestHandler<GetDailyWorkDuration, TimeSpan?>
     {
         private readonly IAttendanceRepository _attendanceRepository;
 
-        public GetDailyWorkHoursHandler(IAttendanceRepository attendanceRepository)
+        public GetDailyWorkDurationHandler(IAttendanceRepository attendanceRepository)
         {
             _attendanceRepository = attendanceRepository;
         }
 
-        public async Task<TimeSpan?> Handle(GetDailyWorkHours request, CancellationToken cancellationToken)
+        public async Task<TimeSpan?> Handle(GetDailyWorkDuration request, CancellationToken cancellationToken)
         {
             var currentDate = DateTime.Now;
             var startOfDay = currentDate.Date; 
