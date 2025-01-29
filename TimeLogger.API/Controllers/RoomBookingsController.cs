@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.RoomBookings.Commands;
+﻿using TimeLogger.Application.Features.RoomBookings.Commands;
 using TimeLogger.Application.Features.RoomBookings.Dtos;
 using TimeLogger.Application.Features.RoomBookings.Queries;
 

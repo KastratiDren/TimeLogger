@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.Checkouts.Commands;
+﻿using TimeLogger.Application.Features.Checkouts.Commands;
 using TimeLogger.Application.Features.Checkouts.Dtos;
 using TimeLogger.Application.Features.Checkouts.Queries;
 

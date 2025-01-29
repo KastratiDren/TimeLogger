@@ -1,6 +1,5 @@
 using TimeLogger.API;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

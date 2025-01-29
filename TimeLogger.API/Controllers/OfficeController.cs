@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.Offices.Commands;
+﻿using TimeLogger.Application.Features.Offices.Commands;
 using TimeLogger.Application.Features.Offices.Dtos;
 using TimeLogger.Application.Features.Offices.Queries;
 

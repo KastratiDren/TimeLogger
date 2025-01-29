@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.Users.Commands;
+﻿using TimeLogger.Application.Features.Users.Commands;
 using TimeLogger.Application.Features.Users.Queries;
 
 namespace TimeLogger.API.Controllers

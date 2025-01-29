@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.Checkins.Commands;
+﻿using TimeLogger.Application.Features.Checkins.Commands;
 using TimeLogger.Application.Features.Checkins.Dto;
 using TimeLogger.Application.Features.Checkins.Queries;
 
