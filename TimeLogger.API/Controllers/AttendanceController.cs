@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using TimeLogger.Application.Features.Attendances.Queries;
+﻿using TimeLogger.Application.Features.Attendances.Queries;
 
 namespace TimeLogger.API.Controllers
 {
@@ -48,7 +47,7 @@ namespace TimeLogger.API.Controllers
         [Authorize]
         public async Task<IActionResult> GetDailyWorkDuration(string userId)
         {
-            var query = new GetDailyWorkHours(userId);
+            var query = new GetDailyWorkDuration(userId);
             var result = await _mediator.Send(query);
 
             if (result == null)
@@ -63,15 +62,15 @@ namespace TimeLogger.API.Controllers
         [Authorize]
         public async Task<IActionResult> GetWeeklyWorkDuration(string userId)
         {
-            var query = new GetWeeklyWorkHours(userId);
+            var query = new GetWeeklyWorkDuration(userId);
             var result = await _mediator.Send(query);
 
-            if (result == TimeSpan.Zero)
+            if (result == null || result == TimeSpan.Zero)
             {
                 return NotFound(new { Message = "No work hours found for the specified user this week." });
             }
 
-            var formattedResult = result.ToString(@"hh\:mm");
+            var formattedResult = result.Value.ToString(@"hh\:mm");
 
             return Ok(new { WeeklyWorkDuration = formattedResult });
         }
@@ -83,14 +82,15 @@ namespace TimeLogger.API.Controllers
             var query = new GetMonthlyWorkDuration(userId);
             var result = await _mediator.Send(query);
 
-            if (result == TimeSpan.Zero)
+            if (result == null || result == TimeSpan.Zero)
             {
                 return NotFound(new { Message = "User hasn't logged any office this month." });
             }
 
-            var formattedResult = result.ToString(@"hh\:mm");
+            var formattedResult = result.Value.ToString(@"hh\:mm"); 
 
             return Ok(new { MonthlyWorkDuration = formattedResult });
         }
+
     }
 }

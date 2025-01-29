@@ -84,7 +84,7 @@
             return attendanceRecords;
         }
 
-        public async Task<TimeSpan> GetTotalWorkDurationByUserId(string userId, DateTime startDate, DateTime endDate)
+        public async Task<TimeSpan?> GetTotalWorkDurationByUserId(string userId, DateTime startDate, DateTime endDate)
         {
             var checkIns = await _context.CheckIns
                 .Where(ci => ci.UserId == userId && ci.CheckInTime >= startDate && ci.CheckInTime <= endDate)
