@@ -70,48 +70,42 @@ A basic app for managing employee check-ins and check-outs, featuring an admin d
 ### Register Endpoint
 Registers a new user in the system by providing necessary information such as name, surname, username, email, and password.
 
-<img width="710" alt="RegisterEndpoint" src="https://github.com/user-attachments/assets/6999032b-3f75-4340-8655-eb380571c3ec" />
-
+<img width="712" alt="UserRegistration" src="https://github.com/user-attachments/assets/cb015156-accb-4782-abbc-477254fb5288" />
 
 ---
 
 ### Login Endpoint
 Authenticates a user by validating their credentials (email and password).
 
-<img width="710" alt="LoginEndpoint" src="https://github.com/user-attachments/assets/fafb2088-7051-4a20-98d9-2d835ecb7129" />
-
+<img width="711" alt="LoginUser" src="https://github.com/user-attachments/assets/1196eb7e-5008-4b33-b354-c03ecb79d1ee" />
 
 ---
 
 ### Check-In Endpoint
 Allows a user to check in to the system, indicating their activity or presence.
 
-<img width="710" alt="CheckinEndpoint" src="https://github.com/user-attachments/assets/1d638474-d3d3-44d9-bac7-76526b23dd24" />
-
+<img width="712" alt="Checkin" src="https://github.com/user-attachments/assets/e5dae78c-0ef3-4f1a-afe0-c9b18be26110" />
 
 ---
 
 ### Delete User Endpoint
 Deletes an existing user from the system by their unique identifier.
 
-<img width="715" alt="DeletUserEndpoint" src="https://github.com/user-attachments/assets/30573f38-e25b-42fa-adf6-905dc623d4c1" />
-
+<img width="739" alt="DeleteUser" src="https://github.com/user-attachments/assets/19f58b2b-0390-469d-8f8d-ed435c3090c9" />
 
 ---
 
 ### Get All Users Endpoint
 Retrieves a list of all users registered in the system.
 
-<img width="712" alt="GetAllUserEndpoint" src="https://github.com/user-attachments/assets/62d8e05e-a589-4070-a1fa-456442af2e3d" />
-
+<img width="736" alt="GetUsers" src="https://github.com/user-attachments/assets/a8ff2619-b8e7-44b2-a64c-8137a365d8c7" />
 
 ---
 
 ### Get User by ID Endpoint
 Fetches details of a specific user based on their unique identifier.
 
-<img width="713" alt="GetUserByIdEndpoint" src="https://github.com/user-attachments/assets/704bbd48-d412-4dd1-aa16-1c1ff6e55825" />
-
+<img width="728" alt="GetUserById" src="https://github.com/user-attachments/assets/3f810adb-c716-4bc1-b85e-8203cd4c0c48" />
 
 ---
 
@@ -119,119 +113,106 @@ Fetches details of a specific user based on their unique identifier.
 ### Create Office Endpoint
 Adds a new office to the system by providing details such as name and location.
 
-<img width="709" alt="CreateOfficeEndpoint" src="https://github.com/user-attachments/assets/1cd0b69c-993c-445b-a631-7175bc0dbd5b" />
-
+<img width="713" alt="CreateOffice" src="https://github.com/user-attachments/assets/30dd29cb-3d8b-4669-bcdf-d8285c349d05" />
 
 ---
 
 ### Get All Offices Endpoint
 Retrieves a list of all offices available in the system.
 
-<img width="712" alt="GetAllOfficesEndpoint" src="https://github.com/user-attachments/assets/6febd503-7e12-403e-9e37-6ddc9f0a1d2a" />
-
+<img width="719" alt="GetOffices" src="https://github.com/user-attachments/assets/01cad6d3-d2ff-4fdc-87be-0f9db5b84ee7" />
 
 ---
 
 ### Get Office by ID Endpoint
 Fetches details of a specific office based on its unique identifier.
 
-<img width="713" alt="GetOfficeByIdEndpoint" src="https://github.com/user-attachments/assets/a2b710a1-eec5-4b93-8fa6-0205727b22c0" />
-
+<img width="719" alt="GetOfficeById" src="https://github.com/user-attachments/assets/4836ca93-fdcf-4dcd-96ba-4e472f06f388" />
 
 ---
 
 ### Check-out Endpoint
 Allows a user to check out of the system, indicating their activity is finished.
 
-<img width="718" alt="CheckoutEndpoint" src="https://github.com/user-attachments/assets/845c6d56-8c77-4211-9ca5-3531ad3b21bb" />
-
+<img width="713" alt="Checkout" src="https://github.com/user-attachments/assets/8ecd2b43-780c-499a-bc90-b5d97a12a619" />
 
 ---
 
 ### Get User's Attendance by User Id Endpoint
 
-<img width="718" alt="GetUsersAttendanceById" src="https://github.com/user-attachments/assets/8668576b-d16d-4a3e-9b84-0689188d954a" />
-
-### Get User's Average Checkin Time By User Id Endpoint
-
-<img width="713" alt="Get AverageCheckInTime" src="https://github.com/user-attachments/assets/cb377e42-d5c4-4b7f-96c4-d8b532dc4f25" />
-
+<img width="712" alt="GetAttendanceByUserID" src="https://github.com/user-attachments/assets/bf97cc1a-84de-4f8f-8236-43428418e426" />
 
 ---
 
 ### Get User's Average Checkin Time By User Id Endpoint
 
-<img width="713" alt="Get AverageCheckOutTime" src="https://github.com/user-attachments/assets/bbba3109-3526-45f5-bc9a-64608466899d" />
-
+<img width="714" alt="AverageCheckinTime" src="https://github.com/user-attachments/assets/edacfb50-5496-4c7d-8ed3-54279b149ae6" />
 
 ---
 
-### Get User's Attendane for Specified Date Endpoint
+### Get User's Average Checkout Time By User Id Endpoint
 
-<img width="712" alt="Get AttendanceByDate" src="https://github.com/user-attachments/assets/7bac72a6-5511-494e-90b6-f235b811e24f" />
+<img width="715" alt="AverageCheckoutTime" src="https://github.com/user-attachments/assets/fed3244f-d83d-4705-8c85-06f4eec5a953" />
 
+---
+
+### Get Attendane for a Specified Date Endpoint
+
+<img width="712" alt="GetAttendanceByDate" src="https://github.com/user-attachments/assets/c03b917e-a4d6-4e82-af14-46d0e668c81a" />
 
 ---
 
 ### Get User's Daily Total Work Duration
 
-<img width="707" alt="UserDailyWorkDuration" src="https://github.com/user-attachments/assets/e628e5b4-435d-4376-8ac4-6d940a92634b" />
-
+<img width="712" alt="GetDailyWorkDuration" src="https://github.com/user-attachments/assets/1ca77284-a42d-4ad9-a6f4-770fef5b6f7e" />
 
 ---
 
 ### Get User's Weekly Total Work Duration
 
-<img width="710" alt="GetWeeklyWorkHours" src="https://github.com/user-attachments/assets/ad1fda93-2542-4b08-9d81-bc4bbd6e0ac0" />
-
+<img width="711" alt="GetWeeklyWorkDuration" src="https://github.com/user-attachments/assets/6c8f1e7a-3fc7-4154-8109-086c2c12f8ef" />
 
 ---
 
-
 ### Get User's Monthly Total Work Duration
 
-<img width="711" alt="GetMonthlyWorkHours" src="https://github.com/user-attachments/assets/05b261d3-240c-4288-8147-af8589b69c58" />
-
+<img width="712" alt="GetMonthlyWorkDuration" src="https://github.com/user-attachments/assets/766c7a94-d5c2-4cf2-8b5b-52ca171ecddd" />
 
 ---
 
 ### Create Room
 
-<img width="710" alt="CreateRoom" src="https://github.com/user-attachments/assets/cc24cdc3-de68-4182-97d5-3f6b928e5209" />
-
+<img width="721" alt="CreateRoom" src="https://github.com/user-attachments/assets/6f678051-350d-49bb-b078-afff75df8842" />
 
 ---
 
 ### Get Room By Id
 
-<img width="712" alt="GetRoomById" src="https://github.com/user-attachments/assets/832f82f7-4f6b-4d56-8089-4adcfb010546" />
-
+<img width="724" alt="GetRoomById" src="https://github.com/user-attachments/assets/2a52311a-8525-4487-a39e-e4206eb061ab" />
 
 ---
 
 ### Get All Rooms
 
-<img width="710" alt="GetAllRooms" src="https://github.com/user-attachments/assets/776caa73-8c09-46b7-9cd4-593a789dcdcd" />
-
+<img width="719" alt="GetRooms" src="https://github.com/user-attachments/assets/b8db6e93-6b15-450b-824f-03eef5198593" />
 
 ---
 
 ### Get All Room Bookings
 
-<img width="711" alt="GetAllRoomBookings" src="https://github.com/user-attachments/assets/b2195265-c70d-4b73-aa45-efcbf7a703f9" />
-
+<img width="725" alt="GetRoomBookings" src="https://github.com/user-attachments/assets/3bc13f69-45bb-4e18-acaa-45c8d2078584" />
 
 ---
 
 ### Get All Room Bookigs for a specified Room
 
-<img width="712" alt="GetRoomBookingsByRoom" src="https://github.com/user-attachments/assets/a7093b4f-4303-451b-b2f1-83b80cb5eda1" />
+<img width="722" alt="GetRoomBookingByRoomById" src="https://github.com/user-attachments/assets/ba5cae74-97d4-473e-abb0-37bcc7ac038e" />
 
 ---
 
 ### Create a Room Booking
 
-<img width="715" alt="CreateRoomBooking" src="https://github.com/user-attachments/assets/7f11b3a6-9c76-4555-b5ec-bab15c9d2531" />
+<img width="730" alt="CreateRoomBookings" src="https://github.com/user-attachments/assets/6665c106-6fa9-430b-b58b-32d07771dec8" />
 
 ---
 
