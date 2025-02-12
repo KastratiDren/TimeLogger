@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.Domain", "TimeLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeLogger.Infrastructure", "TimeLogger.Infrastructure\TimeLogger.Infrastructure.csproj", "{11CEA8F9-A213-4EA9-A580-37EB013E61FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeLogger.Tests", "TimeLogger.Tests\TimeLogger.Tests.csproj", "{01D379C3-CFBF-4198-B51D-E591C021A026}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{11CEA8F9-A213-4EA9-A580-37EB013E61FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11CEA8F9-A213-4EA9-A580-37EB013E61FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11CEA8F9-A213-4EA9-A580-37EB013E61FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01D379C3-CFBF-4198-B51D-E591C021A026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01D379C3-CFBF-4198-B51D-E591C021A026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01D379C3-CFBF-4198-B51D-E591C021A026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01D379C3-CFBF-4198-B51D-E591C021A026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
