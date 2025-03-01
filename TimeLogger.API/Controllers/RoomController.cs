@@ -16,7 +16,7 @@ namespace TimeLogger.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateRoom([FromBody] RoomDto roomDto)
         {
             if (!ModelState.IsValid)
